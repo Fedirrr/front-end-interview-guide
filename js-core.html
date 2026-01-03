@@ -683,6 +683,194 @@
                 </div>
             </div>
         </section>
+
+        <section id="js-advanced" class="section">
+            <h2>1.x JavaScript Core — Продовження</h2>
+
+            <div class="subsection">
+                <h3>Памʼять, мутації, копії</h3>
+
+                <div class="question">
+                    <h4>Що таке shallow copy і deep copy?</h4>
+                    <div class="answer">
+                        <p><strong>Shallow copy</strong> — копіюється тільки верхній рівень.</p>
+                        <ul>
+                            <li>Object spread: <code>{...obj}</code></li>
+                            <li>Array spread: <code>[...arr]</code></li>
+                            <li>Object.assign()</li>
+                        </ul>
+                        <p>Вкладені обʼєкти залишаються за посиланням.</p>
+
+                        <p><strong>Deep copy</strong> — копіюються всі вкладені рівні.</p>
+                        <ul>
+                            <li><code>structuredClone(obj)</code> — правильний спосіб</li>
+                            <li>JSON.parse(JSON.stringify()) — обмежений, ламає Date, Map, Set, functions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке мутація? Чому вона проблема?</h4>
+                    <div class="answer">
+                        <p><strong>Мутація</strong> — зміна існуючого обʼєкта або масиву.</p>
+                        <ul>
+                            <li>Ламає передбачуваність</li>
+                            <li>Ускладнює debugging</li>
+                            <li>Критично для React / Redux</li>
+                        </ul>
+                        <p>Правильний підхід — створення нових структур даних.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Object.freeze vs Object.seal</h4>
+                    <div class="answer">
+                        <ul>
+                            <li><strong>freeze</strong> — не можна змінювати, додавати, видаляти властивості</li>
+                            <li><strong>seal</strong> — можна змінювати існуючі, але не додавати/видаляти</li>
+                        </ul>
+                        <p>Глибокого freeze не існує без рекурсії.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Типи, coercion, edge cases</h3>
+
+                <div class="question">
+                    <h4>Що таке type coercion?</h4>
+                    <div class="answer">
+                        <p><strong>Type coercion</strong> — автоматичне приведення типів.</p>
+                        <ul>
+                            <li>'5' + 1 → '51'</li>
+                            <li>'5' - 1 → 4</li>
+                            <li>[] + [] → ''</li>
+                            <li>[] + {} → '[object Object]'</li>
+                        </ul>
+                        <p>Причина — ToPrimitive, ToNumber, ToString алгоритми.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Чому NaN !== NaN?</h4>
+                    <div class="answer">
+                        <p>NaN — не дорівнює нічому, включно з самим собою.</p>
+                        <p>Перевірка тільки через <code>Number.isNaN(value)</code>.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>null vs undefined — семантична різниця</h4>
+                    <div class="answer">
+                        <ul>
+                            <li><strong>undefined</strong> — значення не присвоєне</li>
+                            <li><strong>null</strong> — присвоєне явно як «нічого»</li>
+                        </ul>
+                        <p>null — це рішення розробника, undefined — стан.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Функції вищого рівня</h3>
+
+                <div class="question">
+                    <h4>Що таке currying?</h4>
+                    <div class="answer">
+                        <p><strong>Currying</strong> — перетворення функції з кількома аргументами у ланцюжок функцій по одному аргументу.</p>
+                        <p>Приклад: sum(a)(b)(c)</p>
+                        <p>Використання: partial application, композиція.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Debounce vs Throttle</h4>
+                    <div class="answer">
+                        <p><strong>Debounce</strong> — виконує функцію після паузи.</p>
+                        <ul>
+                            <li>Пошук</li>
+                            <li>Resize input</li>
+                        </ul>
+                        <p><strong>Throttle</strong> — виконує функцію раз на інтервал.</p>
+                        <ul>
+                            <li>Scroll</li>
+                            <li>Resize window</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Структури даних</h3>
+
+                <div class="question">
+                    <h4>Map / Set vs Object / Array</h4>
+                    <div class="answer">
+                        <ul>
+                            <li><strong>Map</strong> — будь-який тип ключів, зберігає порядок</li>
+                            <li><strong>Set</strong> — унікальні значення</li>
+                            <li><strong>Object</strong> — тільки string/symbol ключі</li>
+                        </ul>
+                        <p>Map краще для кешів і lookup.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>WeakMap / WeakSet</h4>
+                    <div class="answer">
+                        <ul>
+                            <li>Ключі — тільки обʼєкти</li>
+                            <li>Не перешкоджають garbage collection</li>
+                            <li>Не ітеруються</li>
+                        </ul>
+                        <p>Використання: приватні дані, кеші.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Модулі та середовище</h3>
+
+                <div class="question">
+                    <h4>ES Modules vs CommonJS</h4>
+                    <div class="answer">
+                        <ul>
+                            <li>ESM: <code>import / export</code></li>
+                            <li>CJS: <code>require / module.exports</code></li>
+                            <li>ESM — статичний, CJS — динамічний</li>
+                        </ul>
+                        <p>Next.js, modern bundlers — ESM.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке strict mode?</h4>
+                    <div class="answer">
+                        <ul>
+                            <li>Забороняє неявні глобальні змінні</li>
+                            <li>this = undefined у функціях</li>
+                            <li>Кидає помилки замість тихих багів</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Garbage Collection</h3>
+
+                <div class="question">
+                    <h4>Як працює GC в JavaScript?</h4>
+                    <div class="answer">
+                        <p>Алгоритм: <strong>Mark-and-Sweep</strong>.</p>
+                        <ul>
+                            <li>Досяжні обʼєкти — живі</li>
+                            <li>Недосяжні — видаляються</li>
+                        </ul>
+                        <p>Основна причина memory leaks — зайві посилання.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
 </div>
 
