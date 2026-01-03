@@ -217,258 +217,260 @@
         </ul>
     </nav>
 
-
     <section class="content">
         <section id="performance" class="section">
-            <h2>6. Performance</h2>
+            <h2>6. Performance (React)</h2>
 
+            <!-- SIMPLE -->
             <div class="subsection">
-                <h3>Прості питання</h3>
+                <h3>Базові питання</h3>
 
                 <div class="question">
-                    <h4>Що таке performance оптимізація?</h4>
+                    <h4>Що означає performance оптимізація у React?</h4>
                     <div class="answer">
-                        <p><strong>Оптимізація:</strong> покращення швидкості, зменшення лагів, кращий UX.</p>
+                        <p>
+                            <strong>Performance оптимізація</strong> — це зменшення часу завантаження, кількості
+                            перерендерів і блокувань основного потоку для забезпечення швидкого та стабільного UI.
+                        </p>
                         <ul>
-                            <li>Швидший load, smooth interactions</li>
-                            <li>Менше CPU/memory</li>
+                            <li>Менший initial JS bundle</li>
+                            <li>Менше непотрібних re-render</li>
+                            <li>Швидший Time To Interactive (TTI)</li>
+                            <li>Менше CPU / memory usage</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Навіщо оптимізувати React додаток?</h4>
+                    <h4>Що таке re-render у React?</h4>
                     <div class="answer">
-                        <p><strong>Причини:</strong></p>
-                        <ul>
-                            <li>Кращий user experience</li>
-                            <li>SEO (Core Web Vitals)</li>
-                            <li>Масштабування (великі lists)</li>
-                            <li>Зменшення bounce rate</li>
-                        </ul>
+                        <p>
+                            <strong>Re-render</strong> — це повторний виклик функції компонента для
+                            побудови нового Virtual DOM.
+                        </p>
+                        <p>Re-render <strong>НЕ означає</strong> обовʼязкове оновлення реального DOM.</p>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Що таке ре-рендер?</h4>
+                    <h4>Коли компонент перерендерюється?</h4>
                     <div class="answer">
-                        <p><strong>Re-render:</strong> React викликає render() при зміні state/props/context.</p>
                         <ul>
-                            <li>Virtual DOM diff, DOM updates</li>
-                            <li>Не завжди = DOM change</li>
+                            <li>Змінився <strong>state</strong> компонента</li>
+                            <li>Змінились <strong>props</strong></li>
+                            <li>Змінився <strong>context</strong>, який він споживає</li>
+                            <li>Перерендерився <strong>батьківський компонент</strong></li>
+                            <li>Force update</li>
                         </ul>
                         <div class="important">
-                            <strong>Важливо:</strong> Оптимізуй, щоб уникнути зайвих.
+                            Re-render — нормальна частина React. Проблема — <strong>зайві</strong> re-render.
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- MIDDLE -->
             <div class="subsection">
-                <h3>Середні питання</h3>
+                <h3>Середній рівень</h3>
 
                 <div class="question">
-                    <h4>Що таке React.memo? Коли використовувати?</h4>
+                    <h4>Що таке reconciliation?</h4>
                     <div class="answer">
-                        <p><strong>React.memo:</strong> HOC для memoization компонента, skip re-render якщо props
-                            shallow equal.</p>
-                        <p><strong>Коли:</strong> Pure components, expensive renders, lists.</p>
+                        <p>
+                            <strong>Reconciliation</strong> — алгоритм, який порівнює попередній і новий Virtual DOM
+                            та визначає мінімальні зміни для реального DOM.
+                        </p>
                         <ul>
-                            <li><code>const MemoComp = React.memo(Comp)</code></li>
-                            <li>Custom comparator</li>
+                            <li>Порівняння відбувається за типом елемента</li>
+                            <li>Для списків використовуються <strong>key</strong></li>
                         </ul>
-                        <div class="tip">
-                            <strong>Порада:</strong> Комбінуй з useMemo для props.
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Навіщо потрібен key у списках?</h4>
+                    <div class="answer">
+                        <p>
+                            <strong>key</strong> дозволяє React коректно зіставити елементи між рендерами.
+                        </p>
+                        <ul>
+                            <li>Допомагає уникнути повного перерендеру списку</li>
+                            <li>Зберігає state елементів</li>
+                        </ul>
+                        <div class="important">
+                            index як key — допустимий тільки для статичних списків без reorder.
                         </div>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Коли використовувати useCallback?</h4>
+                    <h4>Що таке React.memo?</h4>
                     <div class="answer">
-                        <p><strong>useCallback:</strong> Мемоізує функцію, щоб уникнути re-create.</p>
-                        <p><strong>Коли:</strong> Props для memoized children, deps для useEffect.</p>
+                        <p>
+                            <strong>React.memo</strong> — HOC, який пропускає re-render компонента,
+                            якщо props не змінилися (shallow comparison).
+                        </p>
                         <ul>
-                            <li>Зменшує re-renders</li>
-                            <li>Не всюди - overhead</li>
+                            <li>Працює тільки з props</li>
+                            <li>Корисний для pure components</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Коли використовувати useMemo?</h4>
+                    <h4>Коли React.memo НЕ допоможе?</h4>
                     <div class="answer">
-                        <p><strong>useMemo:</strong> Мемоізує значення для дорогих обчислень.</p>
-                        <p><strong>Коли:</strong> Filtered lists, object creation in render.</p>
                         <ul>
-                            <li><code>const expensive = useMemo(() => compute(data), [data])</code></li>
+                            <li>Props — нові обʼєкти або функції на кожен render</li>
+                            <li>Компонент використовує context</li>
+                            <li>Компонент завжди має змінні props</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Що таке code splitting?</h4>
+                    <h4>useCallback — що це і навіщо?</h4>
                     <div class="answer">
-                        <p><strong>Code splitting:</strong> Розділення bundle на chunks, lazy load.</p>
+                        <p>
+                            <strong>useCallback</strong> мемоізує посилання на функцію між рендерами.
+                        </p>
+                        <p>Використовується коли:</p>
                         <ul>
-                            <li>Webpack dynamic imports</li>
-                            <li>Зменшує initial load</li>
+                            <li>Функція передається в memo-компонент</li>
+                            <li>Функція в dependency масиві useEffect</li>
                         </ul>
+                        <div class="important">
+                            useCallback — не про швидкість виконання, а про стабільність reference.
+                        </div>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Що таке lazy loading?</h4>
+                    <h4>useMemo — що саме він оптимізує?</h4>
                     <div class="answer">
-                        <p><strong>Lazy loading:</strong> Завантаження компонентів on-demand.</p>
-                        <p><strong>React.lazy:</strong> <code>const Lazy = lazy(() => import('./Comp'))</code></p>
+                        <p>
+                            <strong>useMemo</strong> кешує результат обчислення між рендерами.
+                        </p>
                         <ul>
-                            <li>З Suspense fallback</li>
+                            <li>Дорогі обчислення</li>
+                            <li>Створення обʼєктів / масивів</li>
                         </ul>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <h4>Як працює React.lazy і Suspense?</h4>
-                    <div class="answer">
-                        <p><strong>lazy:</strong> Promise-based import.</p>
-                        <p><strong>Suspense:</strong> Fallback під час load, підтримує async.</p>
-                        <ul>
-                            <li><code>&lt;Suspense
-                                fallback={&lt;Spinner/&gt;}&gt;&lt;LazyComp/&gt;&lt;/Suspense&gt;</code></li>
-                            <li>Для routes, data fetching</li>
-                        </ul>
+                        <div class="important">
+                            Не використовуй useMemo для всього — overhead може бути більший за вигоду.
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- ADVANCED -->
             <div class="subsection">
                 <h3>Глибокі питання</h3>
 
                 <div class="question">
-                    <h4>Як профілювати React додаток?</h4>
+                    <h4>Що таке lazy loading у React?</h4>
                     <div class="answer">
-                        <p><strong>Інструменти:</strong> React DevTools Profiler, Performance tab in Chrome.</p>
-                        <ul>
-                            <li>Record session, find flamegraph</li>
-                            <li>Шукай long tasks (>50ms)</li>
-                        </ul>
-                        <div class="tip">
-                            <strong>Порада:</strong> Focus on TTI (Time to Interactive).
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <h4>Що таке React DevTools Profiler?</h4>
-                    <div class="answer">
-                        <p><strong>Profiler:</strong> Вимірює render time, why did update.</p>
-                        <ul>
-                            <li>Ranked chart для bottlenecks</li>
-                            <li>Commit history</li>
-                        </ul>
-                        <p><strong>Використання:</strong> Wrap
-                            <Profiler id="App" onRender={...}>.
+                        <p>
+                            <strong>Lazy loading</strong> — завантаження компонентів тільки коли вони потрібні.
+                        </p>
+                        <p>
+                            Реалізується через <code>React.lazy()</code> + <code>Suspense</code>.
                         </p>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Як оптимізувати великі списки? Що таке віртуалізація?</h4>
+                    <h4>Як працює React.lazy?</h4>
                     <div class="answer">
-                        <p><strong>Віртуалізація:</strong> Рендерити тільки visible items.</p>
-                        <p><strong>Бібліотеки:</strong> react-window, react-virtualized.</p>
                         <ul>
-                            <li>FixedList для flat lists</li>
-                            <li>Зменшує DOM nodes</li>
+                            <li>Використовує dynamic import</li>
+                            <li>Повертає Promise</li>
+                            <li>Компонент не рендериться, поки chunk не завантажений</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Що таке windowing (react-window, react-virtualized)?</h4>
+                    <h4>Що таке Suspense?</h4>
                     <div class="answer">
-                        <p><strong>Windowing:</strong> Render viewport + buffer.</p>
-                        <p><strong>react-window:</strong> Легший, simple lists.</p>
-                        <p><strong>react-virtualized:</strong> Більше features (grids, tables).</p>
+                        <p>
+                            <strong>Suspense</strong> — механізм відображення fallback UI
+                            під час асинхронного завантаження.
+                        </p>
                         <ul>
-                            <li>Auto-scroll to index</li>
+                            <li>Lazy components</li>
+                            <li>Data fetching (React 18+)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Як працює reconciliation algorithm?</h4>
+                    <h4>Як оптимізувати великі списки?</h4>
                     <div class="answer">
-                        <p><strong>Reconciliation:</strong> Diff Virtual DOM, apply minimal changes.</p>
                         <ul>
-                            <li>Keys для list diff</li>
-                            <li>Element type change = full replace</li>
-                        </ul>
-                        <div class="important">
-                            <strong>Важливо:</strong> O(n) для lists з keys.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <h4>Що таке Time Slicing?</h4>
-                    <div class="answer">
-                        <p><strong>Time Slicing:</strong> В Fiber - розбиває renders на chunks для non-blocking UI.</p>
-                        <ul>
-                            <li>Пауза для high-priority tasks</li>
-                            <li>Concurrent Mode</li>
+                            <li>Віртуалізація (windowing)</li>
+                            <li>react-window / react-virtualized</li>
+                            <li>Мінімальний DOM</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Як оптимізувати Context для запобігання зайвих ре-рендерів?</h4>
+                    <h4>Що таке віртуалізація (windowing)?</h4>
                     <div class="answer">
-                        <p><strong>Оптимізації:</strong></p>
+                        <p>
+                            Рендериться тільки видима частина списку + buffer.
+                        </p>
+                        <p>
+                            Значно зменшує memory та render time.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Concurrent Rendering / Time Slicing?</h4>
+                    <div class="answer">
+                        <p>
+                            Механізм Fiber, який дозволяє переривати render
+                            і віддавати контроль браузеру.
+                        </p>
                         <ul>
-                            <li>Separate contexts</li>
-                            <li>useMemo for value</li>
-                            <li>Selectors (useMemo in consumer)</li>
-                            <li>React.memo on providers</li>
+                            <li>UI не блокується</li>
+                            <li>Пріоритети оновлень</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Що таке bundle size optimization?</h4>
+                    <h4>Як Context впливає на performance?</h4>
                     <div class="answer">
-                        <p><strong>Optimization:</strong> Зменшення JS bundle.</p>
                         <ul>
-                            <li>Code splitting, tree shaking</li>
-                            <li>Analyze з webpack-bundle-analyzer</li>
+                            <li>Будь-яка зміна value → re-render всіх consumer</li>
+                            <li>Погано масштабуються великі контексти</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Як працює tree shaking?</h4>
+                    <h4>Як оптимізувати Context?</h4>
                     <div class="answer">
-                        <p><strong>Tree shaking:</strong> Видалення unused code в ESM.</p>
                         <ul>
-                            <li>Webpack/Rollup marks exports</li>
-                            <li>Static analysis</li>
+                            <li>Дробити контексти</li>
+                            <li>useMemo для value</li>
+                            <li>Селектори</li>
                         </ul>
-                        <p><strong>Правила:</strong> Avoid side effects, use ES modules.</p>
                     </div>
                 </div>
 
                 <div class="question">
-                    <h4>Різниця між React.memo і useMemo?</h4>
+                    <h4>React.memo vs useMemo — різниця?</h4>
                     <div class="answer">
-                        <p><strong>React.memo:</strong> Memoizes component render.</p>
-                        <p><strong>useMemo:</strong> Memoizes value inside component.</p>
                         <ul>
-                            <li>memo для pure components</li>
-                            <li>useMemo для computations</li>
+                            <li><strong>React.memo</strong> — мемоізує компонент</li>
+                            <li><strong>useMemo</strong> — мемоізує значення</li>
                         </ul>
                     </div>
                 </div>
+
             </div>
         </section>
     </section>
