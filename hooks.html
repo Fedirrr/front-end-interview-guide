@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Hooks - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що й у попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <!-- React Hooks -->
+        <section id="hooks" class="section">
+            <h2>3. React Hooks</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке hooks?</h4>
+                    <div class="answer">
+                        <p><strong>Hooks</strong> - функції, які дозволяють використовувати state та інші React
+                            можливості у функціональних компонентах.</p>
+                        <p><strong>Основні hooks:</strong> useState, useEffect, useContext, useReducer, useCallback,
+                            useMemo, useRef</p>
+                        <p><strong>Навіщо потрібні:</strong></p>
+                        <ul>
+                            <li>Використання state без класів</li>
+                            <li>Переусюдність логіки через custom hooks</li>
+                            <li>Простіший та чистіший код</li>
+                            <li>Уникнення проблем з this</li>
+                            <li>Краша організація коду по логіці, а не lifecycle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що робить useState?</h4>
+                    <div class="answer">
+                        <p><strong>useState</strong> - hook для додавання state до функціонального компонента.</p>
+                        <p><strong>Повертає масив з 2 елементів:</strong></p>
+                        <ul>
+                            <li>Поточне значення state</li>
+                            <li>Функцію для оновлення state</li>
+                        </ul>
+                        <p><strong>Особливості:</strong></p>
+                        <ul>
+                            <li>Приймає початкове значення (може бути функція для lazy initialization)</li>
+                            <li>Оновлення state асинхронне</li>
+                            <li>Можна передати нове значення або функцію</li>
+                            <li>Якщо значення не змінилось - ре-рендер не відбудеться</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що робить useEffect?</h4>
+                    <div class="answer">
+                        <p><strong>useEffect</strong> - hook для виконання side effects (побічних ефектів) у
+                            функціональних компонентах.</p>
+                        <p><strong>Side effects:</strong> API запити, підписки, таймери, маніпуляції з DOM, логування
+                        </p>
+                        <p><strong>Синтаксис:</strong> useEffect(callback, dependencies)</p>
+                        <p><strong>Особливості:</strong></p>
+                        <ul>
+                            <li>Виконується ПІСЛЯ рендеру (не блокує UI)</li>
+                            <li>Може повертати cleanup функцію</li>
+                            <li>Залежності контролюють коли ефект виконується</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Коли виконується useEffect?</h4>
+                    <div class="answer">
+                        <p><strong>Залежить від масиву залежностей:</strong></p>
+                        <ul>
+                            <li><strong>Немає масиву:</strong> useEffect(callback) - після КОЖНОГО рендеру</li>
+                            <li><strong>Пустий масив:</strong> useEffect(callback, []) - тільки після першого рендеру
+                                (mount)
+                            </li>
+                            <li><strong>З залежностями:</strong> useEffect(callback, [dep1, dep2]) - після рендеру, якщо
+                                залежності змінились
+                            </li>
+                        </ul>
+                        <p><strong>Порядок виконання:</strong></p>
+                        <ol>
+                            <li>Render компонента</li>
+                            <li>Браузер оновлює screen (paint)</li>
+                            <li>useEffect виконується</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке cleanup функція в useEffect?</h4>
+                    <div class="answer">
+                        <p><strong>Cleanup function</strong> - функція, яку повертає useEffect для очищення ресурсів.
+                        </p>
+                        <p><strong>Коли викликається:</strong></p>
+                        <ul>
+                            <li>Перед виконанням наступного effect</li>
+                            <li>Коли компонент unmount (видаляється)</li>
+                        </ul>
+                        <p><strong>Навіщо потрібна:</strong></p>
+                        <ul>
+                            <li>Відписка від subscriptions</li>
+                            <li>Скасування таймерів (clearTimeout, clearInterval)</li>
+                            <li>Відміна запитів (abort controller)</li>
+                            <li>Видалення event listeners</li>
+                            <li>Очищення WebSocket з'єднань</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Завжди очищуй ресурси в cleanup, щоб уникнути memory leaks!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Різниця між useEffect і useLayoutEffect?</h4>
+                    <div class="answer">
+                        <p><strong>useEffect:</strong></p>
+                        <ul>
+                            <li>Виконується АСИНХРОННО після paint</li>
+                            <li>Не блокує відмальовку UI</li>
+                            <li>Використовується в 99% випадків</li>
+                            <li>Порядок: Render → Paint → useEffect</li>
+                        </ul>
+                        <p><strong>useLayoutEffect:</strong></p>
+                        <ul>
+                            <li>Виконується СИНХРОННО перед paint</li>
+                            <li>Блокує відмальовку до завершення</li>
+                            <li>Використовується рідко (тільки коли потрібно)</li>
+                            <li>Порядок: Render → useLayoutEffect → Paint</li>
+                        </ul>
+                        <p><strong>Коли використовувати useLayoutEffect:</strong></p>
+                        <ul>
+                            <li>Вимірювання DOM елементів</li>
+                            <li>Синхронні DOM мутації</li>
+                            <li>Коли useEffect викликає блимання екрану</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Правило:</strong> Спочатку завжди використовуй useEffect. Тільки якщо бачиш
+                            візуальні проблеми - переходь на useLayoutEffect.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useRef? Коли використовувати?</h4>
+                    <div class="answer">
+                        <p><strong>useRef</strong> - hook для створення мутабельного ref об'єкта, який зберігається між
+                            рендерами.</p>
+                        <p><strong>Повертає об'єкт:</strong> { current: value }</p>
+                        <p><strong>Використання:</strong></p>
+                        <ul>
+                            <li><strong>Доступ до DOM елементів</strong> - найпопулярніше використання</li>
+                            <li><strong>Зберігання мутабельних значень</strong> - які не викликають ре-рендер при зміні
+                            </li>
+                            <li><strong>Зберігання попереднього значення state</strong></li>
+                            <li><strong>Зберігання таймерів/інтервалів</strong></li>
+                            <li><strong>Зберігання instance variables</strong> (аналог this в класах)</li>
+                        </ul>
+                        <p><strong>Відмінність від useState:</strong></p>
+                        <ul>
+                            <li>Зміна ref.current НЕ викликає ре-рендер</li>
+                            <li>Зміна відбувається синхронно (не асинхронно як setState)</li>
+                            <li>Можна мутувати напряму (ref.current = newValue)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useContext?</h4>
+                    <div class="answer">
+                        <p><strong>useContext</strong> - hook для читання значення з React Context без Consumer.</p>
+                        <p><strong>Context API</strong> - механізм для передачі даних через дерево компонентів без явної
+                            передачі props на кожному рівні.</p>
+                        <p><strong>Коли використовувати:</strong></p>
+                        <ul>
+                            <li>Глобальні дані (theme, auth, мова)</li>
+                            <li>Дані потрібні багатьом компонентам на різних рівнях</li>
+                            <li>Уникнення prop drilling</li>
+                        </ul>
+                        <p><strong>Як працює:</strong></p>
+                        <ol>
+                            <li>Створюєш Context: createContext()</li>
+                            <li>Обгортаєш компоненти в Provider</li>
+                            <li>Читаєш значення через useContext</li>
+                        </ol>
+                        <div class="important">
+                            <strong>Важливо:</strong> Всі компоненти, що використовують useContext, ре-рендеряться при
+                            зміні значення Context!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useReducer? Коли краще використовувати замість useState?</h4>
+                    <div class="answer">
+                        <p><strong>useReducer</strong> - альтернатива useState для складного state logic.</p>
+                        <p><strong>Приймає:</strong> reducer function і initial state</p>
+                        <p><strong>Повертає:</strong> поточний state і dispatch функцію</p>
+                        <p><strong>Коли використовувати useReducer замість useState:</strong></p>
+                        <ul>
+                            <li>Складний state з багатьма підзначеннями</li>
+                            <li>Наступний state залежить від попереднього</li>
+                            <li>Багато різних дій оновлюють state</li>
+                            <li>Потрібна передбачувана логіка оновлень</li>
+                            <li>Легше тестувати (reducer - pure function)</li>
+                            <li>Схожа логіка на Redux</li>
+                        </ul>
+                        <p><strong>Переваги:</strong></p>
+                        <ul>
+                            <li>Централізована логіка оновлень</li>
+                            <li>Краща для складних state переходів</li>
+                            <li>Легше відстежувати зміни</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useCallback? Навіщо потрібен?</h4>
+                    <div class="answer">
+                        <p><strong>useCallback</strong> - hook для мемоізації callback функцій.</p>
+                        <p><strong>Повертає:</strong> мемоізовану версію callback, яка змінюється тільки при зміні
+                            залежностей</p>
+                        <p><strong>Навіщо потрібен:</strong></p>
+                        <ul>
+                            <li>Оптимізація - запобігає непотрібним ре-рендерам дочірніх компонентів</li>
+                            <li>Працює в парі з React.memo</li>
+                            <li>Стабільні референції для useEffect залежностей</li>
+                            <li>Передача колбеків в оптимізовані компоненти</li>
+                        </ul>
+                        <p><strong>Коли використовувати:</strong></p>
+                        <ul>
+                            <li>Функція передається як prop в React.memo компонент</li>
+                            <li>Функція використовується як залежність в useEffect</li>
+                            <li>Дорогі обчислення в callback</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Не використовуй useCallback всюди - він сам має overhead.
+                            Використовуй тільки для оптимізації конкретних проблем.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useMemo? Навіщо потрібен?</h4>
+                    <div class="answer">
+                        <p><strong>useMemo</strong> - hook для мемоізації обчислених значень.</p>
+                        <p><strong>Повертає:</strong> мемоізоване значення, яке перераховується тільки при зміні
+                            залежностей</p>
+                        <p><strong>Навіщо потрібен:</strong></p>
+                        <ul>
+                            <li>Оптимізація дорогих обчислень</li>
+                            <li>Запобігання непотрібним перерахункам</li>
+                            <li>Стабільні референції для об'єктів/масивів</li>
+                        </ul>
+                        <p><strong>Коли використовувати:</strong></p>
+                        <ul>
+                            <li>Дорогі обчислення (фільтрація, сортування великих масивів)</li>
+                            <li>Створення об'єктів/масивів, що передаються як props</li>
+                            <li>Значення використовується як залежність в useEffect</li>
+                        </ul>
+                        <p><strong>Коли НЕ використовувати:</strong></p>
+                        <ul>
+                            <li>Прості обчислення (overhead буде більшим)</li>
+                            <li>Значення не використовується для оптимізації</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між useCallback і useMemo?</h4>
+                    <div class="answer">
+                        <p><strong>useCallback:</strong></p>
+                        <ul>
+                            <li>Мемоізує ФУНКЦІЮ</li>
+                            <li>Повертає ту ж саму функцію між рендерами</li>
+                            <li>useCallback(fn, deps) = useMemo(() => fn, deps)</li>
+                        </ul>
+                        <p><strong>useMemo:</strong></p>
+                        <ul>
+                            <li>Мемоізує ЗНАЧЕННЯ (результат функції)</li>
+                            <li>Викликає функцію і повертає результат</li>
+                            <li>useMemo(() => value, deps)</li>
+                        </ul>
+                        <p><strong>Приклад:</strong></p>
+                        <ul>
+                            <li>useCallback: const handleClick = useCallback(() => {}, [])</li>
+                            <li>useMemo: const sortedList = useMemo(() => list.sort(), [list])</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Запам'ятай:</strong> useCallback - для функцій, useMemo - для значень.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке custom hooks? Як створити?</h4>
+                    <div class="answer">
+                        <p><strong>Custom Hooks</strong> - власні hooks для переусюдності логіки між компонентами.</p>
+                        <p><strong>Правила створення:</strong></p>
+                        <ul>
+                            <li>Назва ОБОВ'ЯЗКОВО починається з "use"</li>
+                            <li>Може використовувати інші hooks</li>
+                            <li>Просто функція, яка може приймати аргументи і повертати значення</li>
+                            <li>Підкоряється Rules of Hooks</li>
+                        </ul>
+                        <p><strong>Навіщо потрібні:</strong></p>
+                        <ul>
+                            <li>Переусюдність логіки (не UI!)</li>
+                            <li>Абстракція складної логіки</li>
+                            <li>Уникнення дублювання коду</li>
+                            <li>Кращий поділ відповідальності</li>
+                        </ul>
+                        <p><strong>Популярні custom hooks:</strong> useFetch, useLocalStorage, useDebounce,
+                            useWindowSize, useToggle, usePrevious</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Правила hooks (rules of hooks). Чому вони важливі?</h4>
+                    <div class="answer">
+                        <p><strong>Правило 1: Викликай hooks тільки на верхньому рівні</strong></p>
+                        <ul>
+                            <li>НЕ викликай hooks всередині циклів, умов, вкладених функцій</li>
+                            <li>Завжди використовуй hooks в одному і тому ж порядку</li>
+                        </ul>
+                        <p><strong>Правило 2: Викликай hooks тільки з React функцій</strong></p>
+                        <ul>
+                            <li>З функціональних компонентів React</li>
+                            <li>З custom hooks</li>
+                            <li>НЕ викликай з звичайних JavaScript функцій</li>
+                        </ul>
+                        <p><strong>Чому важливі:</strong></p>
+                        <ul>
+                            <li>React покладається на ПОРЯДОК виклику hooks</li>
+                            <li>React зберігає state hooks в масиві за індексами</li>
+                            <li>Якщо порядок змінюється - state буде зв'язаний з неправильним hook</li>
+                            <li>Призведе до багів та непередбачуваної поведінки</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Використовуй ESLint plugin (eslint-plugin-react-hooks) для
+                            автоматичної перевірки цих правил!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як React відстежує порядок викликів hooks?</h4>
+                    <div class="answer">
+                        <p><strong>Внутрішній механізм React:</strong></p>
+                        <ul>
+                            <li>React зберігає hooks в лінкед-листі (linked list) для кожного компонента</li>
+                            <li>При першому рендері створюється список hooks в порядку виклику</li>
+                            <li>При наступних рендерах React проходить по цьому списку в тому ж порядку</li>
+                            <li>Кожен hook має індекс/позицію в списку</li>
+                        </ul>
+                        <p><strong>Fiber node зберігає:</strong></p>
+                        <ul>
+                            <li>memoizedState - список hooks для цього компонента</li>
+                            <li>Кожен hook має посилання на наступний (next)</li>
+                        </ul>
+                        <p><strong>Чому порядок критичний:</strong></p>
+                        <ul>
+                            <li>React не знає назв hooks - тільки порядок</li>
+                            <li>Якщо useState(1) стане другим замість першого - він отримає state другого useState</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке stale closures проблема в hooks?</h4>
+                    <div class="answer">
+                        <p><strong>Stale Closure</strong> - проблема, коли функція "запам'ятовує" старе значення замість
+                            актуального.</p>
+                        <p><strong>Причина:</strong> замикання зберігає значення з моменту створення функції</p>
+                        <p><strong>Типові сценарії:</strong></p>
+                        <ul>
+                            <li>setInterval з state всередині</li>
+                            <li>Event listeners, які читають state</li>
+                            <li>useEffect з пустим масивом залежностей, але використовує state</li>
+                        </ul>
+                        <p><strong>Рішення:</strong></p>
+                        <ul>
+                            <li><strong>Додати в залежності useEffect</strong> - перестворює функцію при зміні</li>
+                            <li><strong>Використати useRef</strong> - зберігає актуальне значення</li>
+                            <li><strong>Functional update</strong> - setState(prev => prev + 1) замість setState(count +
+                                1)
+                            </li>
+                            <li><strong>useCallback з правильними залежностями</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
+</body>
+</html>
