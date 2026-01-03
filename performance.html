@@ -349,15 +349,137 @@
                     <h4>useMemo — що саме він оптимізує?</h4>
                     <div class="answer">
                         <p>
-                            <strong>useMemo</strong> кешує результат обчислення між рендерами.
+                            <strong>useMemo</strong> кешує результат обчислення між рендерами,
+                            щоб React не виконував одне й те саме обчислення знову.
                         </p>
+                        <p>Оптимізує:</p>
                         <ul>
                             <li>Дорогі обчислення</li>
-                            <li>Створення обʼєктів / масивів</li>
+                            <li>Створення нових обʼєктів та масивів</li>
                         </ul>
                         <div class="important">
-                            Не використовуй useMemo для всього — overhead може бути більший за вигоду.
+                            useMemo оптимізує <strong>JS-обчислення</strong>, а не re-render напряму.
                         </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>А що таке «дорогі обчислення»?</h4>
+                    <div class="answer">
+                        <p>
+                            <strong>Дорогі обчислення</strong> — це операції, які:
+                        </p>
+                        <ul>
+                            <li>виконуються довго по часу</li>
+                            <li>працюють з великими масивами або обʼєктами</li>
+                            <li>викликаються на кожен render</li>
+                        </ul>
+                        <p>Типові приклади:</p>
+                        <ul>
+                            <li>filter / map / reduce на великих списках</li>
+                            <li>сортування масивів</li>
+                            <li>побудова складних структур даних</li>
+                            <li>важка бізнес-логіка в render</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>А якщо обчислення швидке — useMemo потрібен?</h4>
+                    <div class="answer">
+                        <p>
+                            Ні.
+                        </p>
+                        <p>
+                            useMemo має власний overhead:
+                        </p>
+                        <ul>
+                            <li>зберігання кешу</li>
+                            <li>перевірка dependency</li>
+                        </ul>
+                        <p>
+                            Якщо обчислення просте — useMemo може зробити <strong>гірше</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>useMemo зберігає значення назавжди?</h4>
+                    <div class="answer">
+                        <p>
+                            Ні.
+                        </p>
+                        <ul>
+                            <li>Кеш може бути очищений React у будь-який момент</li>
+                            <li>useMemo — це performance hint, а не гарантія</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Чому useMemo не «фіксить» re-render?</h4>
+                    <div class="answer">
+                        <p>
+                            Тому що re-render викликається:
+                        </p>
+                        <ul>
+                            <li>state</li>
+                            <li>props</li>
+                            <li>context</li>
+                        </ul>
+                        <p>
+                            useMemo лише зменшує роботу <strong>всередині</strong> render,
+                            але не запобігає самому render.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Часте питання: useMemo чи useCallback — що швидше?</h4>
+                    <div class="answer">
+                        <p>
+                            Жодне.
+                        </p>
+                        <ul>
+                            <li>useMemo — кешує значення</li>
+                            <li>useCallback — кешує функцію</li>
+                        </ul>
+                        <p>
+                            Вони не про швидкість, а про <strong>стабільність reference</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Навіщо useMemo для обʼєктів і масивів?</h4>
+                    <div class="answer">
+                        <p>
+                            Бо без useMemo:
+                        </p>
+                        <ul>
+                            <li>на кожен render створюється новий обʼєкт</li>
+                            <li>React.memo в child перестає працювати</li>
+                        </ul>
+                        <p>
+                            useMemo зберігає reference → memo-компоненти не перерендерюються.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Типове тупе питання: useMemo — це кеш?</h4>
+                    <div class="answer">
+                        <p>
+                            Так, але:
+                        </p>
+                        <ul>
+                            <li>не LRU-cache</li>
+                            <li>не persistent</li>
+                            <li>не гарантований</li>
+                        </ul>
+                        <p>
+                            Це оптимізаційна підказка для React.
+                        </p>
                     </div>
                 </div>
             </div>
