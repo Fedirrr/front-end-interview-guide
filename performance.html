@@ -1,10 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="performance" class="section">
+            <h2>6. Performance</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке performance оптимізація?</h4>
+                    <div class="answer">
+                        <p><strong>Оптимізація:</strong> покращення швидкості, зменшення лагів, кращий UX.</p>
+                        <ul>
+                            <li>Швидший load, smooth interactions</li>
+                            <li>Менше CPU/memory</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Навіщо оптимізувати React додаток?</h4>
+                    <div class="answer">
+                        <p><strong>Причини:</strong></p>
+                        <ul>
+                            <li>Кращий user experience</li>
+                            <li>SEO (Core Web Vitals)</li>
+                            <li>Масштабування (великі lists)</li>
+                            <li>Зменшення bounce rate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке ре-рендер?</h4>
+                    <div class="answer">
+                        <p><strong>Re-render:</strong> React викликає render() при зміні state/props/context.</p>
+                        <ul>
+                            <li>Virtual DOM diff, DOM updates</li>
+                            <li>Не завжди = DOM change</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Оптимізуй, щоб уникнути зайвих.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке React.memo? Коли використовувати?</h4>
+                    <div class="answer">
+                        <p><strong>React.memo:</strong> HOC для memoization компонента, skip re-render якщо props
+                            shallow equal.</p>
+                        <p><strong>Коли:</strong> Pure components, expensive renders, lists.</p>
+                        <ul>
+                            <li><code>const MemoComp = React.memo(Comp)</code></li>
+                            <li>Custom comparator</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Комбінуй з useMemo для props.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Коли використовувати useCallback?</h4>
+                    <div class="answer">
+                        <p><strong>useCallback:</strong> Мемоізує функцію, щоб уникнути re-create.</p>
+                        <p><strong>Коли:</strong> Props для memoized children, deps для useEffect.</p>
+                        <ul>
+                            <li>Зменшує re-renders</li>
+                            <li>Не всюди - overhead</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Коли використовувати useMemo?</h4>
+                    <div class="answer">
+                        <p><strong>useMemo:</strong> Мемоізує значення для дорогих обчислень.</p>
+                        <p><strong>Коли:</strong> Filtered lists, object creation in render.</p>
+                        <ul>
+                            <li><code>const expensive = useMemo(() => compute(data), [data])</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке code splitting?</h4>
+                    <div class="answer">
+                        <p><strong>Code splitting:</strong> Розділення bundle на chunks, lazy load.</p>
+                        <ul>
+                            <li>Webpack dynamic imports</li>
+                            <li>Зменшує initial load</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке lazy loading?</h4>
+                    <div class="answer">
+                        <p><strong>Lazy loading:</strong> Завантаження компонентів on-demand.</p>
+                        <p><strong>React.lazy:</strong> <code>const Lazy = lazy(() => import('./Comp'))</code></p>
+                        <ul>
+                            <li>З Suspense fallback</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює React.lazy і Suspense?</h4>
+                    <div class="answer">
+                        <p><strong>lazy:</strong> Promise-based import.</p>
+                        <p><strong>Suspense:</strong> Fallback під час load, підтримує async.</p>
+                        <ul>
+                            <li><code>&lt;Suspense
+                                fallback={&lt;Spinner/&gt;}&gt;&lt;LazyComp/&gt;&lt;/Suspense&gt;</code></li>
+                            <li>Для routes, data fetching</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Як профілювати React додаток?</h4>
+                    <div class="answer">
+                        <p><strong>Інструменти:</strong> React DevTools Profiler, Performance tab in Chrome.</p>
+                        <ul>
+                            <li>Record session, find flamegraph</li>
+                            <li>Шукай long tasks (>50ms)</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Focus on TTI (Time to Interactive).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке React DevTools Profiler?</h4>
+                    <div class="answer">
+                        <p><strong>Profiler:</strong> Вимірює render time, why did update.</p>
+                        <ul>
+                            <li>Ranked chart для bottlenecks</li>
+                            <li>Commit history</li>
+                        </ul>
+                        <p><strong>Використання:</strong> Wrap
+                            <Profiler id="App" onRender={...}>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як оптимізувати великі списки? Що таке віртуалізація?</h4>
+                    <div class="answer">
+                        <p><strong>Віртуалізація:</strong> Рендерити тільки visible items.</p>
+                        <p><strong>Бібліотеки:</strong> react-window, react-virtualized.</p>
+                        <ul>
+                            <li>FixedList для flat lists</li>
+                            <li>Зменшує DOM nodes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке windowing (react-window, react-virtualized)?</h4>
+                    <div class="answer">
+                        <p><strong>Windowing:</strong> Render viewport + buffer.</p>
+                        <p><strong>react-window:</strong> Легший, simple lists.</p>
+                        <p><strong>react-virtualized:</strong> Більше features (grids, tables).</p>
+                        <ul>
+                            <li>Auto-scroll to index</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює reconciliation algorithm?</h4>
+                    <div class="answer">
+                        <p><strong>Reconciliation:</strong> Diff Virtual DOM, apply minimal changes.</p>
+                        <ul>
+                            <li>Keys для list diff</li>
+                            <li>Element type change = full replace</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> O(n) для lists з keys.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Time Slicing?</h4>
+                    <div class="answer">
+                        <p><strong>Time Slicing:</strong> В Fiber - розбиває renders на chunks для non-blocking UI.</p>
+                        <ul>
+                            <li>Пауза для high-priority tasks</li>
+                            <li>Concurrent Mode</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як оптимізувати Context для запобігання зайвих ре-рендерів?</h4>
+                    <div class="answer">
+                        <p><strong>Оптимізації:</strong></p>
+                        <ul>
+                            <li>Separate contexts</li>
+                            <li>useMemo for value</li>
+                            <li>Selectors (useMemo in consumer)</li>
+                            <li>React.memo on providers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке bundle size optimization?</h4>
+                    <div class="answer">
+                        <p><strong>Optimization:</strong> Зменшення JS bundle.</p>
+                        <ul>
+                            <li>Code splitting, tree shaking</li>
+                            <li>Analyze з webpack-bundle-analyzer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює tree shaking?</h4>
+                    <div class="answer">
+                        <p><strong>Tree shaking:</strong> Видалення unused code в ESM.</p>
+                        <ul>
+                            <li>Webpack/Rollup marks exports</li>
+                            <li>Static analysis</li>
+                        </ul>
+                        <p><strong>Правила:</strong> Avoid side effects, use ES modules.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між React.memo і useMemo?</h4>
+                    <div class="answer">
+                        <p><strong>React.memo:</strong> Memoizes component render.</p>
+                        <p><strong>useMemo:</strong> Memoizes value inside component.</p>
+                        <ul>
+                            <li>memo для pure components</li>
+                            <li>useMemo для computations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
 </body>
 </html>

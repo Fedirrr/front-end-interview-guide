@@ -1,10 +1,491 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Router - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <section id="react-router" class="section">
+            <h2>5. React Router</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке React Router?</h4>
+                    <div class="answer">
+                        <p><strong>React Router</strong> - бібліотека для declarative routing в React SPA.</p>
+                        <p><strong>Навіщо:</strong> керування URL, navigation без reload, nested routes.</p>
+                        <p><strong>Версії:</strong> v6+ - data APIs (loaders, actions).</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як створити маршрути?</h4>
+                    <div class="answer">
+                        <p><strong>В v6:</strong> <code>&lt;BrowserRouter&gt;&lt;Routes&gt;&lt;Route path="/" element={&lt;Home/&gt;}/&gt;&lt;/Routes&gt;&lt;/BrowserRouter&gt;</code>
+                        </p>
+                        <ul>
+                            <li><code>Routes</code> - контейнер для Route</li>
+                            <li><code>Route</code> - path + element</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Обгорни в index.js.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Route, Routes?</h4>
+                    <div class="answer">
+                        <p><strong>Route:</strong> визначає path і component для рендеру.</p>
+                        <p><strong>Routes:</strong> обирає найкращий Route за path, рендерить тільки один.</p>
+                        <ul>
+                            <li>Підтримує exact match, wildcards (*)</li>
+                            <li>Nested Routes для layouts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як зробити навігацію між сторінками?</h4>
+                    <div class="answer">
+                        <p><strong>Програмна:</strong> <code>useNavigate() - const navigate = useNavigate();
+                            navigate('/path')</code></p>
+                        <p><strong>Декларативна:</strong> <code>&lt;Link to="/path"&gt;Go&lt;/Link&gt;</code></p>
+                        <ul>
+                            <li>replace: true для заміни history</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Link компонент?</h4>
+                    <div class="answer">
+                        <p><strong>Link:</strong> як &lt;a&gt;, але без reload, використовує history API.</p>
+                        <p><strong>Props:</strong> to, replace, state (для data).</p>
+                        <ul>
+                            <li>Авто relative paths</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Використовуй для SPA navigation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Різниця між Link і NavLink?</h4>
+                    <div class="answer">
+                        <p><strong>Link:</strong> базовий, без active styles.</p>
+                        <p><strong>NavLink:</strong> додає class 'active' для current path.</p>
+                        <ul>
+                            <li><code>isActive</code> prop для custom logic</li>
+                            <li>end: true для exact match</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> NavLink для nav menus.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useNavigate?</h4>
+                    <div class="answer">
+                        <p><strong>useNavigate:</strong> hook для programmatic navigation.</p>
+                        <p><strong>Використання:</strong> <code>const navigate = useNavigate(); navigate(-1) //
+                            back</code></p>
+                        <ul>
+                            <li>Повертає function з delta або location</li>
+                            <li>Корисно для forms, modals</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useParams?</h4>
+                    <div class="answer">
+                        <p><strong>useParams:</strong> hook для читання динамічних params з URL.</p>
+                        <p><strong>Приклад:</strong> path="/user/:id" → <code>const {id} = useParams()</code></p>
+                        <ul>
+                            <li>Повертає об'єкт з params</li>
+                            <li>Для RESTful routes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useLocation?</h4>
+                    <div class="answer">
+                        <p><strong>useLocation:</strong> hook для поточного location об'єкта.</p>
+                        <p><strong>Включає:</strong> pathname, search, hash, state.</p>
+                        <ul>
+                            <li>Корисно для side effects на route change</li>
+                            <li>useSearchParams для query strings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як зробити динамічні роути?</h4>
+                    <div class="answer">
+                        <p><strong>Params:</strong> <code>&lt;Route path="/user/:id" element={&lt;User/&gt;}/&gt;</code>
+                        </p>
+                        <p><strong>Query:</strong> /user?id=1 - useSearchParams</p>
+                        <p><strong>Wildcards:</strong> <code>path="/files/*"</code> для nested</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке nested routes?</h4>
+                    <div class="answer">
+                        <p><strong>Nested:</strong> Routes всередині компонента для layouts.</p>
+                        <p><strong>Приклад:</strong> <code>&lt;Route path="dashboard" element={&lt;Layout&gt;&lt;Outlet/&gt;&lt;/Layout&gt;}&gt;
+                            &lt;Route path="profile" element={&lt;Profile/&gt;}/&gt; &lt;/Route&gt;</code></p>
+                        <ul>
+                            <li>Outlet рендерить child routes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як зробити 404 сторінку?</h4>
+                    <div class="answer">
+                        <p><strong>Wildcard route:</strong> <code>&lt;Route path="*"
+                            element={&lt;NotFound/&gt;}/&gt;</code> - останній в Routes.</p>
+                        <ul>
+                            <li>Використовуй useNavigate для redirect</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Додай useLocation для custom messages.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Що таке Outlet?</h4>
+                    <div class="answer">
+                        <p><strong>Outlet:</strong> placeholder для child routes в nested routing.</p>
+                        <p><strong>Використання:</strong> В layout:
+                            <code>&lt;nav/&gt;&lt;Outlet/&gt;&lt;footer/&gt;</code></p>
+                        <ul>
+                            <li>Рендерить matching child</li>
+                            <li>Підтримує fallbacks з Suspense</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює lazy loading routes?</h4>
+                    <div class="answer">
+                        <p><strong>Lazy:</strong> <code>const LazyComp = lazy(() => import('./Comp')); &lt;Route
+                            path="/" element={
+                            <Suspense fallback={<Spinner/>}>
+                                <LazyComp/>
+                            </Suspense>
+                            }/&gt;</code></p>
+                        <ul>
+                            <li>Code splitting на routes</li>
+                            <li>Завантажує тільки active bundle</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Обгорни в Suspense.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке loader в React Router v6?</h4>
+                    <div class="answer">
+                        <p><strong>Loader:</strong> async function для data fetching перед рендером.</p>
+                        <p><strong>Використання:</strong> <code>&lt;Route loader={async ({params}) => await
+                            fetchUser(params.id)} element={&lt;User/&gt;}/&gt;</code></p>
+                        <ul>
+                            <li>useLoaderData() для читання</li>
+                            <li>Блокує рендер до resolve</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке action в React Router v6?</h4>
+                    <div class="answer">
+                        <p><strong>Action:</strong> handler для form submissions (POST/PUT).</p>
+                        <p><strong>Використання:</strong> <code>&lt;Route action={async ({request}) => { const form =
+                            await request.formData(); ... }} element={&lt;Form/&gt;}/&gt;</code></p>
+                        <ul>
+                            <li>Авто navigate після success</li>
+                            <li>Для mutations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між BrowserRouter і HashRouter?</h4>
+                    <div class="answer">
+                        <p><strong>BrowserRouter:</strong> clean URLs (/path), сервер повинен support (SSR).</p>
+                        <p><strong>HashRouter:</strong> #/path, працює без сервера (static hosting).</p>
+                        <ul>
+                            <li>Browser: SEO friendly</li>
+                            <li>Hash: простіший deploy</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Вибір:</strong> Browser для production, Hash для dev/static.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як захистити роути (protected routes)?</h4>
+                    <div class="answer">
+                        <p><strong>Wrapper:</strong> <code>const Protected = ({children}) => auth ? children :
+                            <Navigate to="/login"/>
+                            ;</code></p>
+                        <ul>
+                            <li><code>&lt;Route path="/dashboard" element={&lt;Protected&gt;&lt;Dashboard/&gt;&lt;/Protected&gt;}/&gt;</code>
+                            </li>
+                            <li>Використовуй useAuth context</li>
+                        </ul>
+                        <p><strong>Loader/action:</strong> check auth перед fetch.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке useRoutes hook?</h4>
+                    <div class="answer">
+                        <p><strong>useRoutes:</strong> programmatic routes config без JSX.</p>
+                        <p><strong>Приклад:</strong> <code>const routes = [{path: '/', element:
+                            <Home/>
+                            }]; &lt;>{useRoutes(routes)}&lt;/></code></p>
+                        <ul>
+                            <li>Корисно для dynamic routes</li>
+                            <li>Альтернатива &lt;Routes&gt;</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
 </body>
 </html>

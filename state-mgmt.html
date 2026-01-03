@@ -1,10 +1,745 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Management - Front-End Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <section id="state-mgmt" class="section">
+            <h2>4. State Management</h2>
+
+            <div class="subsection">
+                <h3>Redux - Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке Redux?</h4>
+                    <div class="answer">
+                        <p><strong>Redux</strong> - predictable state container для JavaScript додатків. Централізоване
+                            сховище для state.</p>
+                        <p><strong>Три принципи Redux:</strong></p>
+                        <ul>
+                            <li><strong>Single source of truth</strong> - весь state в одному store</li>
+                            <li><strong>State is read-only</strong> - змінити state можна тільки через actions</li>
+                            <li><strong>Changes are made with pure functions</strong> - reducers мають бути pure
+                                functions
+                            </li>
+                        </ul>
+                        <p><strong>Навіщо потрібен:</strong></p>
+                        <ul>
+                            <li>Складний state, який використовують багато компонентів</li>
+                            <li>Передбачувані оновлення state</li>
+                            <li>Легше debugging (Redux DevTools)</li>
+                            <li>Time-travel debugging</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке store?</h4>
+                    <div class="answer">
+                        <p><strong>Store</strong> - об'єкт, який тримає весь state додатку.</p>
+                        <p><strong>Методи store:</strong></p>
+                        <ul>
+                            <li><strong>getState()</strong> - повертає поточний state</li>
+                            <li><strong>dispatch(action)</strong> - відправляє action для зміни state</li>
+                            <li><strong>subscribe(listener)</strong> - додає listener на зміни</li>
+                            <li><strong>replaceReducer(nextReducer)</strong> - заміна reducer (рідко використовується)
+                            </li>
+                        </ul>
+                        <p>В Redux додатку має бути ОДИН store.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке action?</h4>
+                    <div class="answer">
+                        <p><strong>Action</strong> - plain JavaScript об'єкт, який описує ЩО сталося.</p>
+                        <p><strong>Структура:</strong></p>
+                        <ul>
+                            <li><strong>type</strong> (обов'язковий) - рядок, що описує дію</li>
+                            <li><strong>payload</strong> (опціональний) - дані для action</li>
+                        </ul>
+                        <p><strong>Action Creator</strong> - функція, що створює action об'єкт.</p>
+                        <p>Actions - єдиний спосіб передати дані в store.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке reducer?</h4>
+                    <div class="answer">
+                        <p><strong>Reducer</strong> - pure function, яка приймає попередній state і action, повертає
+                            новий state.</p>
+                        <p><strong>Сигнатура:</strong> (state, action) => newState</p>
+                        <p><strong>Правила reducer:</strong></p>
+                        <ul>
+                            <li>Має бути pure function (без side effects)</li>
+                            <li>НЕ мутує state - завжди повертає новий об'єкт</li>
+                            <li>Повертає попередній state для невідомих actions</li>
+                            <li>Одні й ті ж аргументи = той же результат</li>
+                        </ul>
+                        <p>Використовується switch/case для обробки різних action types.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як підключити Redux до React?</h4>
+                    <div class="answer">
+                        <p><strong>Кроки:</strong></p>
+                        <ul>
+                            <li>Встановити redux, react-redux</li>
+                            <li>Створити store: <code>createStore(reducer)</code></li>
+                            <li>Обгорнути app в <code>&lt;Provider store={store}&gt;</code></li>
+                            <li>Використовувати <code>connect()</code> (класові) або <code>useSelector/useDispatch</code> (hooks)</li>
+                        </ul>
+                        <p><strong>Приклад з hooks:</strong></p>
+                        <ul>
+                            <li><code>const data = useSelector(state => state.data)</code></li>
+                            <li><code>dispatch({type: 'UPDATE', payload: newData})</code></li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Використовуй Redux Toolkit для спрощення boilerplate.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Redux - Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке middleware в Redux?</h4>
+                    <div class="answer">
+                        <p><strong>Middleware</strong> - проміжний шар між dispatch action і reducer. Розширює
+                            можливості Redux.</p>
+                        <p><strong>Що дозволяє:</strong></p>
+                        <ul>
+                            <li>Обробляти асинхронні actions</li>
+                            <li>Логування actions</li>
+                            <li>Crash reporting</li>
+                            <li>Маршрутизація</li>
+                            <li>Відкладені actions</li>
+                        </ul>
+                        <p><strong>Популярні middleware:</strong></p>
+                        <ul>
+                            <li><strong>Redux Thunk</strong> - для async operations</li>
+                            <li><strong>Redux Saga</strong> - для складної async логіки</li>
+                            <li><strong>Redux Logger</strong> - для логування</li>
+                        </ul>
+                        <p>Middleware викликаються в порядку, в якому передані в <code>applyMiddleware()</code>.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Redux Thunk? Навіщо потрібен?</h4>
+                    <div class="answer">
+                        <p><strong>Redux Thunk</strong> - middleware, що дозволяє писати action creators, які повертають
+                            функцію замість action.</p>
+                        <p><strong>Навіщо потрібен:</strong></p>
+                        <ul>
+                            <li>Асинхронні операції (API запити)</li>
+                            <li>Відкладений dispatch</li>
+                            <li>Умовний dispatch (dispatch тільки якщо умова)</li>
+                            <li>Доступ до getState для читання поточного state</li>
+                        </ul>
+                        <p><strong>Thunk function</strong> приймає dispatch і getState як аргументи.</p>
+                        <p><strong>Переваги:</strong> простий, мінімальний boilerplate, легко зрозуміти</p>
+                        <p><strong>Недоліки:</strong> складно тестувати, не підходить для дуже складної async логіки</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Redux Saga?</h4>
+                    <div class="answer">
+                        <p><strong>Redux Saga</strong> - middleware для управління побічними ефектами за допомогою ES6 generators.</p>
+                        <p><strong>Навіщо потрібен:</strong></p>
+                        <ul>
+                            <li>Складна async логіка (послідовні/паралельні запити, умовні флоу)</li>
+                            <li>Тестування без callbacks</li>
+                            <li>Кращий контроль над side effects</li>
+                        </ul>
+                        <p><strong>Ключові концепції:</strong></p>
+                        <ul>
+                            <li><strong>Sagas</strong> - generators, що слухають actions</li>
+                            <li><strong>Effects</strong> - API для side effects (call, put, take, fork)</li>
+                            <li><strong>takeEvery/takeLatest</strong> - слухачі actions</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Використовуй Saga для enterprise додатків з складною логікою, Thunk для простих.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке selector?</h4>
+                    <div class="answer">
+                        <p><strong>Selector</strong> - функція, яка отримує Redux state і повертає певну частину даних.</p>
+                        <p><strong>Навіщо потрібні:</strong></p>
+                        <ul>
+                            <li>Доступ до частини state без передачі всього store</li>
+                            <li>Мемоізація обчислень (з reselect для уникнення перерахунків)</li>
+                            <li>Розділення логіки компонента від Redux</li>
+                            <li>Оптимізація ре-рендерів</li>
+                        </ul>
+                        <p><strong>Приклад:</strong> <code>const getUsers = state => state.users</code></p>
+                        <p><strong>З reselect:</strong> <code>createSelector(getUsers, users => users.filter(u => u.active))</code></p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між mapStateToProps і useSelector?</h4>
+                    <div class="answer">
+                        <p><strong>mapStateToProps</strong> - HOC для класових компонентів, мапить state на props.</p>
+                        <ul>
+                            <li>Використовується з connect()</li>
+                            <li>Автоматичний re-render при зміні mapped props</li>
+                            <li>Застарілий підхід</li>
+                        </ul>
+                        <p><strong>useSelector</strong> - hook для функціональних компонентів.</p>
+                        <ul>
+                            <li>Повертає частину state</li>
+                            <li>Підтримує shallow equal для оптимізації</li>
+                            <li>Сучасний підхід</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> useSelector кращий для нових проектів, бо простіший і з hooks.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Redux Toolkit?</h4>
+                    <div class="answer">
+                        <p><strong>Redux Toolkit (RTK)</strong> - офіційний набір інструментів для спрощення Redux boilerplate.</p>
+                        <p><strong>Включає:</strong></p>
+                        <ul>
+                            <li><code>configureStore()</code> - простий store setup з middleware</li>
+                            <li><code>createSlice()</code> - комбінує reducers/actions</li>
+                            <li><code>createAsyncThunk()</code> - для async actions</li>
+                            <li>Immer для immutable updates</li>
+                            <li>DevTools integration</li>
+                        </ul>
+                        <p><strong>Переваги:</strong> менше коду, кращі defaults, легше вчити.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке slice в RTK?</h4>
+                    <div class="answer">
+                        <p><strong>Slice</strong> - частина state з reducers і actions для однієї feature.</p>
+                        <p><strong>Створюється через:</strong> <code>createSlice({ name, initialState, reducers })</code></p>
+                        <ul>
+                            <li>Автоматично генерує action creators</li>
+                            <li>Використовує Immer для мутацій (без spread)</li>
+                            <li>Експортує reducer для комбінації</li>
+                        </ul>
+                        <p><strong>Приклад:</strong></p>
+                        <ul>
+                            <li><code>extraReducers</code> для async thunks</li>
+                            <li>Авто-generated types для TypeScript</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Порада:</strong> Один slice на feature (e.g., usersSlice, cartSlice).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Redux - Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Чому reducer повинен бути pure function?</h4>
+                    <div class="answer">
+                        <p><strong>Pure function</strong> - завжди повертає той же результат для тих же вхідних даних, без side effects.</p>
+                        <p><strong>Чому:</strong></p>
+                        <ul>
+                            <li>Передбачуваність - легко тестувати і debug</li>
+                            <li>Time-travel debugging в DevTools</li>
+                            <li>Паралельне виконання (без мутацій)</li>
+                            <li>Легкість оптимізації (memoization)</li>
+                        </ul>
+                        <p><strong>Side effects (API, timers)</strong> - виносити в middleware (Thunk/Saga).</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює immutability в Redux?</h4>
+                    <div class="answer">
+                        <p><strong>Immutability</strong> - state не мутується, завжди створюється новий об'єкт.</p>
+                        <p><strong>Чому:</strong></p>
+                        <ul>
+                            <li>Виявлення змін (shallow compare для ре-рендерів)</li>
+                            <li>Передбачуваність</li>
+                            <li>Undo/redo</li>
+                        </ul>
+                        <p><strong>Реалізація:</strong> spread operator <code>{...state, newProp: value}</code>, Immer для мутацій.</p>
+                        <div class="important">
+                            <strong>Важливо:</strong> Мутуй тільки з Immer в RTK, інакше - shallow copy.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Immer в Redux Toolkit?</h4>
+                    <div class="answer">
+                        <p><strong>Immer</strong> - бібліотека для immutable updates через mutable-like код.</p>
+                        <p><strong>Як працює:</strong></p>
+                        <ul>
+                            <li>Створює draft (копію), дозволяє мутувати draft</li>
+                            <li>Повертає immutable новий state</li>
+                            <li>Використовується в createSlice/reducers</li>
+                        </ul>
+                        <p><strong>Приклад:</strong> <code>state.count++</code> замість <code>{...state, count: state.count + 1}</code></p>
+                        <p><strong>Переваги:</strong> менше boilerplate, менше помилок з мутаціями.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між Redux Thunk і Redux Saga?</h4>
+                    <div class="answer">
+                        <p><strong>Thunk:</strong></p>
+                        <ul>
+                            <li>Повертає функцію з dispatch/getState</li>
+                            <li>Прості async (fetch.then(dispatch))</li>
+                            <li>Легко вчити, мало boilerplate</li>
+                            <li>Складно для складних флоу</li>
+                        </ul>
+                        <p><strong>Saga:</strong></p>
+                        <ul>
+                            <li>Generators + effects (yield call(put))</li>
+                            <li>Складні флоу (race, fork, cancel)</li>
+                            <li>Краще тестування (unit tests на sagas)</li>
+                            <li>Більше boilerplate</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Вибір:</strong> Thunk для 80% випадків, Saga для enterprise async.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке createAsyncThunk в RTK?</h4>
+                    <div class="answer">
+                        <p><strong>createAsyncThunk</strong> - утиліта для створення async action creators.</p>
+                        <p><strong>Генерує:</strong> pending/fulfilled/rejected actions.</p>
+                        <ul>
+                            <li>Приймає payloadCreator (async функцію)</li>
+                            <li>Авто-обробка loading/error states в extraReducers</li>
+                            <li>Підтримує abort (signal)</li>
+                        </ul>
+                        <p><strong>Приклад:</strong> <code>createAsyncThunk('users/fetch', async () => await fetchUsers())</code></p>
+                        <div class="important">
+                            <strong>Важливо:</strong> Використовуй з extraReducers для fulfilled/rejected.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює createSelector з reselect?</h4>
+                    <div class="answer">
+                        <p><strong>createSelector</strong> - мемоізований selector з reselect.</p>
+                        <p><strong>Як працює:</strong></p>
+                        <ul>
+                            <li>Кешує результат на основі input selectors</li>
+                            <li>Перераховує тільки при зміні inputs</li>
+                            <li>Компоновані: outputSelector залежить від інших selectors</li>
+                        </ul>
+                        <p><strong>Приклад:</strong> <code>const getFiltered = createSelector(getItems, getFilter, (items, filter) => items.filter(...))</code></p>
+                        <p><strong>Переваги:</strong> оптимізація, уникнення дорогих обчислень.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Коли використовувати нормалізацію даних?</h4>
+                    <div class="answer">
+                        <p><strong>Нормалізація</strong> - зберігання даних у flat структурі з ID references (як у БД).</p>
+                        <p><strong>Коли:</strong></p>
+                        <ul>
+                            <li>Списки з nested entities (users with posts)</li>
+                            <li>Уникнення дублювання даних</li>
+                            <li>Легші updates (змінювати тільки entity)</li>
+                            <li>Використання з selectors для joins</li>
+                        </ul>
+                        <p><strong>Приклад:</strong> <code>{ users: {1: {...}}, posts: {1: {userId: 1}} }</code></p>
+                        <div class="tip">
+                            <strong>Порада:</strong> Використовуй normalizr для автоматизації.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Context API</h3>
+
+                <div class="question">
+                    <h4>Що таке Context API?</h4>
+                    <div class="answer">
+                        <p><strong>Context API</strong> - вбудований механізм React для передачі даних без prop drilling.</p>
+                        <p><strong>Компоненти:</strong></p>
+                        <ul>
+                            <li><code>createContext()</code> - створює context</li>
+                            <li><code>Provider</code> - надає значення</li>
+                            <li><code>Consumer</code> або <code>useContext()</code> - читає значення</li>
+                        </ul>
+                        <p><strong>Навіщо:</strong> глобальні дані (theme, auth) для середніх додатків.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Коли використовувати Context замість Redux?</h4>
+                    <div class="answer">
+                        <p><strong>Context для:</strong></p>
+                        <ul>
+                            <li>Маленькі/середні додатки</li>
+                            <li>Прості глобальні дані (theme, locale)</li>
+                            <li>Без складної async логіки</li>
+                        </ul>
+                        <p><strong>Redux для:</strong></p>
+                        <ul>
+                            <li>Великі додатки з багатьма features</li>
+                            <li>Складний state з middleware</li>
+                            <li>Потрібен debugging/time-travel</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Правило:</strong> Почни з Context, перейди на Redux якщо state росте.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Проблеми Context API з performance</h4>
+                    <div class="answer">
+                        <p><strong>Проблема:</strong> Всі consumers ре-рендеряться при зміні Provider value.</p>
+                        <ul>
+                            <li>Повний tree re-render</li>
+                            <li>Навіть якщо компонент не використовує context</li>
+                        </ul>
+                        <p><strong>Рішення:</strong></p>
+                        <ul>
+                            <li>Розділити contexts (themeContext, authContext)</li>
+                            <li>Використовувати <code>useMemo</code> для value</li>
+                            <li>Комбінувати з <code>useReducer</code> для локальної логіки</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як оптимізувати Context?</h4>
+                    <div class="answer">
+                        <p><strong>Оптимізації:</strong></p>
+                        <ul>
+                            <li><code>value={useMemo(() => ({...state}), [state])}</code> - стабільний value</li>
+                            <li>Окремі contexts для незалежних даних</li>
+                            <li><code>React.memo</code> на consumers</li>
+                            <li>Custom hook з selector-like логікою</li>
+                        </ul>
+                        <p><strong>Альтернатива:</strong> Zustand/Recoil для кращої гранулярності.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Інші стейт менеджери</h3>
+
+                <div class="question">
+                    <h4>Що таке Zustand? Переваги?</h4>
+                    <div class="answer">
+                        <p><strong>Zustand</strong> - мінімальний state manager з hooks API.</p>
+                        <p><strong>Переваги:</strong></p>
+                        <ul>
+                            <li>Мало boilerplate (create(() => ({ count: 0, inc: () => set(s => ({count: s.count+1})) })))</li>
+                            <li>Підтримка middleware (devtools, persist)</li>
+                            <li>Легкий (1kb), без providers</li>
+                            <li>Сумісний з TypeScript</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Коли:</strong> Для простих глобальних states без Redux overhead.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке MobX? Принцип роботи?</h4>
+                    <div class="answer">
+                        <p><strong>MobX</strong> - реактивний state manager з observable patterns.</p>
+                        <p><strong>Принцип:</strong></p>
+                        <ul>
+                            <li><strong>Observables</strong> - track changes</li>
+                            <li><strong>Actions</strong> - мутації</li>
+                            <li><strong>Computed</strong> - derived state</li>
+                            <li><strong>Reactions</strong> - auto updates (re-renders)</li>
+                        </ul>
+                        <p><strong>Переваги:</strong> декларативний, mutable-like код, швидкий.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Recoil? Atoms і selectors?</h4>
+                    <div class="answer">
+                        <p><strong>Recoil</strong> - state manager від Facebook з atomic state.</p>
+                        <p><strong>Atoms:</strong> базові одиниці state (<code>atom({key, default})</code>).</p>
+                        <p><strong>Selectors:</strong> derived state (<code>selector({key, get: ({get}) => get(atom).map(...)})</code>).</p>
+                        <ul>
+                            <li>Async selectors для API</li>
+                            <li>RecoilRoot як provider</li>
+                            <li>useRecoilState/useRecoilValue</li>
+                        </ul>
+                        <p><strong>Переваги:</strong> гранулярні updates, добре для React.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Jotai?</h4>
+                    <div class="answer">
+                        <p><strong>Jotai</strong> - atomic state manager, натхненний Recoil, але легший.</p>
+                        <p><strong>Принцип:</strong></p>
+                        <ul>
+                            <li>Atoms як базові states</li>
+                            <li>useAtom для read/write</li>
+                            <li>Derived atoms для computed</li>
+                        </ul>
+                        <p><strong>Переваги:</strong> мінімальний API, без providers, TypeScript-friendly.</p>
+                        <div class="tip">
+                            <strong>Коли:</strong> Для fine-grained reactivity без overhead.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Порівняй Redux, MobX, Zustand</h4>
+                    <div class="answer">
+                        <table>
+                            <tr><th>Бібліотека</th><th>Boilerplate</th><th>Async</th><th>Performance</th><th>Коли використовувати</th></tr>
+                            <tr><td>Redux</td><td>Високий (RTK зменшує)</td><td>Middleware (Thunk/Saga)</td><td>Добре з selectors</td><td>Великі додатки, debugging</td></tr>
+                            <tr><td>MobX</td><td>Низький</td><td>В actions</td><td>Реактивний, швидкий</td><td>Mutable-like код, OOP</td></tr>
+                            <tr><td>Zustand</td><td>Мінімальний</td><td>Middleware</td><td>Легкий, гранулярний</td><td>Прості глобальні states</td></tr>
+                        </table>
+                        <div class="important">
+                            <strong>Висновок:</strong> Redux для enterprise, Zustand для швидкості, MobX для реактивності.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
 </body>
 </html>

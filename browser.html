@@ -1,10 +1,427 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser & Web - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="browser" class="section">
+            <h2>15. Browser & Web</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке DOM?</h4>
+                    <div class="answer">
+                        <p><strong>DOM:</strong> Tree representation of HTML.</p>
+                        <ul>
+                            <li>API for manipulation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке localStorage?</h4>
+                    <div class="answer">
+                        <p><strong>localStorage:</strong> Key-value, persistent.</p>
+                        <ul>
+                            <li>5MB limit</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке sessionStorage?</h4>
+                    <div class="answer">
+                        <p><strong>sessionStorage:</strong> Per tab, cleared on close.</p>
+                        <ul>
+                            <li>Same API as local</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між localStorage і sessionStorage?</h4>
+                    <div class="answer">
+                        <p><strong>local:</strong> Permanent across sessions.</p>
+                        <p><strong>session:</strong> Tab-specific, temporary.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке cookies?</h4>
+                    <div class="answer">
+                        <p><strong>Cookies:</strong> Small data sent with requests.</p>
+                        <ul>
+                            <li>HttpOnly, Secure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке CORS?</h4>
+                    <div class="answer">
+                        <p><strong>CORS:</strong> Cross-Origin Resource Sharing.</p>
+                        <ul>
+                            <li>Headers: Access-Control-Allow-Origin</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Same-Origin Policy?</h4>
+                    <div class="answer">
+                        <p><strong>SOP:</strong> Restrict cross-site requests.</p>
+                        <ul>
+                            <li>Protocol/host/port same</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке HTTP methods (GET, POST, PUT, DELETE)?</h4>
+                    <div class="answer">
+                        <p><strong>GET:</strong> Read.</p>
+                        <p><strong>POST:</strong> Create.</p>
+                        <p><strong>PUT:</strong> Update full.</p>
+                        <p><strong>DELETE:</strong> Delete.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке status codes?</h4>
+                    <div class="answer">
+                        <p><strong>Codes:</strong> 200 OK, 404 Not Found, 500 Error.</p>
+                        <ul>
+                            <li>2xx success, 4xx client, 5xx server</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке WebSocket?</h4>
+                    <div class="answer">
+                        <p><strong>WebSocket:</strong> Full-duplex over TCP.</p>
+                        <ul>
+                            <li>ws:// for real-time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Service Worker?</h4>
+                    <div class="answer">
+                        <p><strong>SW:</strong> Proxy between app/network.</p>
+                        <ul>
+                            <li>Offline, caching</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Як працює browser rendering?</h4>
+                    <div class="answer">
+                        <p><strong>Rendering:</strong> Parse HTML/CSS → DOM/CSSOM → Render Tree → Layout → Paint →
+                            Composite.</p>
+                        <ul>
+                            <li>Critical path</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Critical Rendering Path?</h4>
+                    <div class="answer">
+                        <p><strong>CRP:</strong> Steps to first paint.</p>
+                        <ul>
+                            <li>Optimize: Async JS, critical CSS</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Reflow і Repaint?</h4>
+                    <div class="answer">
+                        <p><strong>Reflow:</strong> Layout recalc (width change).</p>
+                        <p><strong>Repaint:</strong> Visual (color).</p>
+                        <ul>
+                            <li>Batch changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Web Vitals (LCP, FID, CLS)?</h4>
+                    <div class="answer">
+                        <p><strong>LCP:</strong> Largest content paint.</p>
+                        <p><strong>FID:</strong> First input delay (now INP).</p>
+                        <p><strong>CLS:</strong> Cumulative layout shift.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке PWA?</h4>
+                    <div class="answer">
+                        <p><strong>PWA:</strong> App-like web (manifest, SW).</p>
+                        <ul>
+                            <li>Offline, installable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює browser caching?</h4>
+                    <div class="answer">
+                        <p><strong>Caching:</strong> Cache-Control, ETag, Service Worker.</p>
+                        <ul>
+                            <li>Memory/disk</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке HTTP/2 і HTTP/3?</h4>
+                    <div class="answer">
+                        <p><strong>HTTP/2:</strong> Multiplexing, binary.</p>
+                        <p><strong>HTTP/3:</strong> QUIC over UDP, faster.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Web Workers?</h4>
+                    <div class="answer">
+                        <p><strong>Workers:</strong> Background threads.</p>
+                        <ul>
+                            <li>No DOM, postMessage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>

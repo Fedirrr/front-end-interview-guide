@@ -1,10 +1,437 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styling - Front-End Interview Guide</title>
+    <!-- Стилі та nav як у попередніх -->
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="styling" class="section">
+            <h2>8. Styling</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Які є способи стилізації в React?</h4>
+                    <div class="answer">
+                        <p><strong>Способи:</strong> CSS files, inline styles, CSS Modules, CSS-in-JS, Tailwind.</p>
+                        <ul>
+                            <li>CSS: import './styles.css'</li>
+                            <li>Inline: style={{color: 'red'}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке CSS Modules?</h4>
+                    <div class="answer">
+                        <p><strong>CSS Modules:</strong> Scoped CSS, local classes.</p>
+                        <ul>
+                            <li><code>import styles from './Comp.module.css'; &lt;div
+                                className={styles.title}&gt;</code></li>
+                            <li>:local/:global</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке inline styles?</h4>
+                    <div class="answer">
+                        <p><strong>Inline:</strong> JS object для style prop.</p>
+                        <ul>
+                            <li><code>style={{backgroundColor: 'blue', fontSize: '16px'}}</code></li>
+                            <li>Dynamic: {isActive && {color: 'red'}}</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Недоліки:</strong> No pseudo-classes, media queries.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке className в React?</h4>
+                    <div class="answer">
+                        <p><strong>className:</strong> Замість class, бо class - keyword.</p>
+                        <ul>
+                            <li><code>&lt;div className="container"&gt;</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке CSS-in-JS?</h4>
+                    <div class="answer">
+                        <p><strong>CSS-in-JS:</strong> Styles в JS, runtime generation.</p>
+                        <ul>
+                            <li>Scoped, dynamic (props-based)</li>
+                            <li>Libs: styled-components, emotion</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Styled Components?</h4>
+                    <div class="answer">
+                        <p><strong>Styled Components:</strong> Tagged template для styled div/button.</p>
+                        <ul>
+                            <li><code>const Button = styled.button`color: red;`</code></li>
+                            <li>Props: ${props => props.primary ? 'blue' : 'gray'}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Emotion?</h4>
+                    <div class="answer">
+                        <p><strong>Emotion:</strong> CSS-in-JS з css prop, faster than styled.</p>
+                        <ul>
+                            <li><code>&lt;div css="color: red;"&gt;</code></li>
+                            <li>Cache для performance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Переваги і недоліки CSS-in-JS?</h4>
+                    <div class="answer">
+                        <p><strong>Переваги:</strong> Scoped, dynamic, no global conflicts.</p>
+                        <p><strong>Недоліки:</strong> Runtime overhead, bundle size, SSR complexity.</p>
+                        <div class="tip">
+                            <strong>Вибір:</strong> Для dynamic UI; CSS Modules для static.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Tailwind CSS?</h4>
+                    <div class="answer">
+                        <p><strong>Tailwind:</strong> Utility-first CSS framework.</p>
+                        <ul>
+                            <li><code>&lt;div className="bg-blue-500 text-white p-4"&gt;</code></li>
+                            <li>PostCSS для purge unused</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює Tailwind?</h4>
+                    <div class="answer">
+                        <p><strong>Work:</strong> Compile-time classes з config.</p>
+                        <ul>
+                            <li>jit mode для fast dev</li>
+                            <li>Plugins для custom</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Різниця між runtime CSS-in-JS і compile-time?</h4>
+                    <div class="answer">
+                        <p><strong>Runtime:</strong> JS generates CSS on client (styled-components).</p>
+                        <p><strong>Compile-time:</strong> Build-time (Tailwind, CSS Modules).</p>
+                        <ul>
+                            <li>Runtime: Dynamic, slower</li>
+                            <li>Compile: Static, faster, smaller</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке critical CSS?</h4>
+                    <div class="answer">
+                        <p><strong>Critical:</strong> Above-fold styles для fast render.</p>
+                        <ul>
+                            <li>Extract з bundle</li>
+                            <li>Inline в
+                                <head>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Performance CSS-in-JS vs CSS Modules?</h4>
+                    <div class="answer">
+                        <p><strong>CSS-in-JS:</strong> Runtime parse, higher memory.</p>
+                        <p><strong>CSS Modules:</strong> Pre-built, faster load.</p>
+                        <ul>
+                            <li>CSS-in-JS: Better scoping</li>
+                            <li>Modules: Better perf</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює динамічна стилізація в Styled Components?</h4>
+                    <div class="answer">
+                        <p><strong>Dynamic:</strong> Interpolation з props/theme.</p>
+                        <ul>
+                            <li>${props => props.size ? `font-size: ${props.size}px` : '16px'}</li>
+                            <li>Theme: useTheme hook</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке theming в Styled Components?</h4>
+                    <div class="answer">
+                        <p><strong>Theming:</strong> ThemeProvider з context.</p>
+                        <ul>
+                            <li><code>&lt;ThemeProvider theme={darkTheme}&gt;</code></li>
+                            <li>${theme => theme.colors.primary}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>SSR проблеми з CSS-in-JS</h4>
+                    <div class="answer">
+                        <p><strong>Проблеми:</strong> Hydration mismatch, styles load after render.</p>
+                        <ul>
+                            <li>ServerRender: Collect styles</li>
+                            <li>ExtractCritical для inline</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Рішення:</strong> Use styled-components SSR utils.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке atomic CSS?</h4>
+                    <div class="answer">
+                        <p><strong>Atomic:</strong> Single-purpose classes (Tailwind style).</p>
+                        <ul>
+                            <li>Pros: No duplication</li>
+                            <li>Cons: Verbose HTML</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>

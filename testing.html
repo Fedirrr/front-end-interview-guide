@@ -1,10 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="testing" class="section">
+            <h2>9. Testing</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Навіщо потрібні тести?</h4>
+                    <div class="answer">
+                        <p><strong>Тести:</strong> Ensure code works, catch regressions, docs.</p>
+                        <ul>
+                            <li>Confidence in changes</li>
+                            <li>TDD/BDD</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке unit test?</h4>
+                    <div class="answer">
+                        <p><strong>Unit:</strong> Test isolated function/component.</p>
+                        <ul>
+                            <li>Fast, no deps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке integration test?</h4>
+                    <div class="answer">
+                        <p><strong>Integration:</strong> Test multiple units together (e.g. component + API).</p>
+                        <ul>
+                            <li>Slower than unit, broader coverage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Jest?</h4>
+                    <div class="answer">
+                        <p><strong>Jest:</strong> Testing framework з assertions, mocks, coverage.</p>
+                        <ul>
+                            <li>Zero-config для React</li>
+                            <li>snapshots, watch mode</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке React Testing Library?</h4>
+                    <div class="answer">
+                        <p><strong>RTL:</strong> User-centric testing, query by role/text.</p>
+                        <ul>
+                            <li>Focus on behavior, not implementation</li>
+                            <li>Avoid getByTestId</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як тестувати компоненти?</h4>
+                    <div class="answer">
+                        <p><strong>Render:</strong> <code>render(<Comp />); expect(screen.getByText('Hello')).toBeInTheDocument()</code></p>
+                        <ul>
+                            <li>userEvent для interactions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке render з RTL?</h4>
+                    <div class="answer">
+                        <p><strong>render:</strong> Mounts component, returns utilities.</p>
+                        <ul>
+                            <li><code>const {getByRole, queryByText} = render(<Comp />)</code></li>
+                            <li>With providers: render(<Comp />, {wrapper: AppProvider})</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як тестувати події (clicks, input)?</h4>
+                    <div class="answer">
+                        <p><strong>userEvent:</strong> <code>userEvent.click(screen.getByRole('button'))</code></p>
+                        <ul>
+                            <li>type: userEvent.type(input, 'text')</li>
+                            <li>fireEvent для low-level</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке screen в RTL?</h4>
+                    <div class="answer">
+                        <p><strong>screen:</strong> Global queries.</p>
+                        <ul>
+                            <li>screen.getByRole('heading')</li>
+                            <li>Convenience, no multiple renders</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між getBy, queryBy, findBy?</h4>
+                    <div class="answer">
+                        <p><strong>getBy:</strong> Throws if not found.</p>
+                        <p><strong>queryBy:</strong> Returns null if not found.</p>
+                        <p><strong>findBy:</strong> Async, waits for appear.</p>
+                        <div class="tip">
+                            <strong>Правило:</strong> getBy for must-exist, queryBy for optional.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке user-event?</h4>
+                    <div class="answer">
+                        <p><strong>user-event:</strong> Simulates real user interactions.</p>
+                        <ul>
+                            <li>Handles focus, keyboard, etc.</li>
+                            <li>Better than fireEvent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Як тестувати асинхронний код?</h4>
+                    <div class="answer">
+                        <p><strong>Async:</strong> <code>await waitFor(() => expect(...).toBeTruthy())</code></p>
+                        <ul>
+                            <li>act для state changes</li>
+                            <li>jest.useFakeTimers для timeouts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як тестувати hooks?</h4>
+                    <div class="answer">
+                        <p><strong>@testing-library/react-hooks:</strong> <code>renderHook(() => useCustom())</code></p>
+                        <ul>
+                            <li>rerender, unmount</li>
+                            <li>Wrapper для context</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як мокати API запити?</h4>
+                    <div class="answer">
+                        <p><strong>jest.mock:</strong> Mock modules.</p>
+                        <ul>
+                            <li>msw: Browser/server mocks</li>
+                            <li>fetch mock з handlers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке MSW (Mock Service Worker)?</h4>
+                    <div class="answer">
+                        <p><strong>MSW:</strong> Intercept network requests.</p>
+                        <ul>
+                            <li>rest.get('/api', res => res.json(data))</li>
+                            <li>Works in tests and dev</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як тестувати Context?</h4>
+                    <div class="answer">
+                        <p><strong>Wrapper:</strong> render з Provider.</p>
+                        <ul>
+                            <li><code>render(<Comp />, {wrapper: ({children}) => <Context.Provider value={value}>{children}</Context.Provider>})</code></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як тестувати Redux?</h4>
+                    <div class="answer">
+                        <p><strong>@reduxjs/toolkit:</strong> configureStore з reducer.</p>
+                        <ul>
+                            <li>Test reducers: expect(reducer(state, action)).toEqual(expected)</li>
+                            <li>Store wrapper для components</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке E2E тестування?</h4>
+                    <div class="answer">
+                        <p><strong>E2E:</strong> End-to-end, full app flow.</p>
+                        <ul>
+                            <li>Cypress/Playwright</li>
+                            <li>Slow, but real-user simulation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між Cypress і Playwright?</h4>
+                    <div class="answer">
+                        <p><strong>Cypress:</strong> JS-only, easy, but browser-limited.</p>
+                        <p><strong>Playwright:</strong> Multi-browser, faster, API testing.</p>
+                        <ul>
+                            <li>Playwright: Better for cross-browser</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке test coverage? Скільки потрібно?</h4>
+                    <div class="answer">
+                        <p><strong>Coverage:</strong> % lines/branches tested.</p>
+                        <ul>
+                            <li>80%+ goal, focus on critical paths</li>
+                            <li>jest --coverage</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке snapshot testing?</h4>
+                    <div class="answer">
+                        <p><strong>Snapshot:</strong> Save render output, compare on change.</p>
+                        <ul>
+                            <li>expect(renderer.create(<Comp />).toJSON()).toMatchSnapshot()</li>
+                            <li>Good for UI, bad for dynamic</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>

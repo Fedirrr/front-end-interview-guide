@@ -1,10 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="html-css" class="section">
+            <h2>14. HTML/CSS</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке семантичний HTML?</h4>
+                    <div class="answer">
+                        <p><strong>Семантичний:</strong> Tags з meaning (header, nav, article).</p>
+                        <ul>
+                            <li>Accessibility, SEO</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Основні HTML5 теги?</h4>
+                    <div class="answer">
+                        <p><strong>Теги:</strong> &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;,
+                            &lt;aside&gt;, &lt;footer&gt;.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Flexbox?</h4>
+                    <div class="answer">
+                        <p><strong>Flexbox:</strong> 1D layout for rows/columns.</p>
+                        <ul>
+                            <li>display: flex; justify-content, align-items</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Grid?</h4>
+                    <div class="answer">
+                        <p><strong>Grid:</strong> 2D layout system.</p>
+                        <ul>
+                            <li>display: grid; grid-template-columns</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Різниця між Flexbox і Grid?</h4>
+                    <div class="answer">
+                        <p><strong>Flex:</strong> Linear, good for components.</p>
+                        <p><strong>Grid:</strong> 2D, for pages/layouts.</p>
+                        <ul>
+                            <li>Flex: align single axis</li>
+                            <li>Grid: explicit tracks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Box Model?</h4>
+                    <div class="answer">
+                        <p><strong>Box:</strong> Content + padding + border + margin.</p>
+                        <ul>
+                            <li>box-sizing: border-box</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке position (relative, absolute, fixed)?</h4>
+                    <div class="answer">
+                        <p><strong>Relative:</strong> Offset from normal.</p>
+                        <p><strong>Absolute:</strong> From nearest positioned ancestor.</p>
+                        <p><strong>Fixed:</strong> From viewport.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке z-index?</h4>
+                    <div class="answer">
+                        <p><strong>z-index:</strong> Stacking order for positioned elements.</p>
+                        <ul>
+                            <li>Higher = front</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке псевдо-класи і псевдо-елементи?</h4>
+                    <div class="answer">
+                        <p><strong>Pseudo-classes:</strong> :hover, :focus.</p>
+                        <p><strong>Pseudo-elements:</strong> ::before, ::after.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як зробити responsive design?</h4>
+                    <div class="answer">
+                        <p><strong>Responsive:</strong> Fluid grids, flexible images.</p>
+                        <ul>
+                            <li>Media queries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке media queries?</h4>
+                    <div class="answer">
+                        <p><strong>Media:</strong> @media (max-width: 600px) { ... }</p>
+                        <ul>
+                            <li>Mobile-first</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Що таке CSS Specificity?</h4>
+                    <div class="answer">
+                        <p><strong>Specificity:</strong> !important > id > class > tag.</p>
+                        <ul>
+                            <li>Calculate: (inline, ids, classes, tags)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке BEM методологія?</h4>
+                    <div class="answer">
+                        <p><strong>BEM:</strong> Block__Element--Modifier.</p>
+                        <ul>
+                            <li>button__icon--primary</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке CSS Variables (Custom Properties)?</h4>
+                    <div class="answer">
+                        <p><strong>Variables:</strong> --color: red; var(--color).</p>
+                        <ul>
+                            <li>Dynamic, scoped</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке CSS containment?</h4>
+                    <div class="answer">
+                        <p><strong>Containment:</strong> contain: layout/style/paint.</p>
+                        <ul>
+                            <li>Perf optimization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Accessibility best practices?</h4>
+                    <div class="answer">
+                        <p><strong>A11y:</strong> Semantic HTML, alt, aria-label, keyboard nav.</p>
+                        <ul>
+                            <li>WCAG guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке ARIA атрибути?</h4>
+                    <div class="answer">
+                        <p><strong>ARIA:</strong> role="button", aria-hidden.</p>
+                        <ul>
+                            <li>For screen readers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як оптимізувати CSS performance?</h4>
+                    <div class="answer">
+                        <p><strong>Opt:</strong> Critical CSS, minify, avoid deep selectors.</p>
+                        <ul>
+                            <li>Will-change for animations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>

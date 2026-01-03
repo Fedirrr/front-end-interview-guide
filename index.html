@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Interview Guide - Повний гід</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .toc {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .toc h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .toc li {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc a {
+            color: #2d3748;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            .toc ul {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="js-core.html">1. JavaScript Core</a></li>
+            <li><a href="react-basics.html">2. React Basics</a></li>
+            <li><a href="hooks.html">3. Hooks</a></li>
+            <li><a href="state-mgmt.html">4. State Management</a></li>
+            <li><a href="react-router.html">5. React Router</a></li>
+            <li><a href="performance.html">6. Performance</a></li>
+            <li><a href="typescript.html">7. TypeScript</a></li>
+            <li><a href="styling.html">8. Styling</a></li>
+            <li><a href="testing.html">9. Testing</a></li>
+            <li><a href="build.html">10. Build Tools</a></li>
+            <li><a href="api.html">11. API & Data Fetching</a></li>
+            <li><a href="patterns.html">12. Patterns</a></li>
+            <li><a href="advanced-react.html">13. Advanced React</a></li>
+            <li><a href="html-css.html">14. HTML/CSS</a></li>
+            <li><a href="browser.html">15. Browser & Web</a></li>
+            <li><a href="git.html">16. Git</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <div class="toc">
+            <h2>Зміст тем</h2>
+            <ul>
+                <li><a href="js-core.html">1. JavaScript Core</a></li>
+                <li><a href="react-basics.html">2. React Basics</a></li>
+                <li><a href="hooks.html">3. React Hooks</a></li>
+                <li><a href="state-mgmt.html">4. State Management</a></li>
+                <li><a href="react-router.html">5. React Router</a></li>
+                <li><a href="performance.html">6. Performance</a></li>
+                <li><a href="typescript.html">7. TypeScript</a></li>
+                <li><a href="styling.html">8. Styling</a></li>
+                <li><a href="testing.html">9. Testing</a></li>
+                <li><a href="build.html">10. Build Tools</a></li>
+                <li><a href="api.html">11. API & Data Fetching</a></li>
+                <li><a href="patterns.html">12. Patterns</a></li>
+                <li><a href="advanced-react.html">13. Advanced React</a></li>
+                <li><a href="html-css.html">14. HTML/CSS</a></li>
+                <li><a href="browser.html">15. Browser & Web</a></li>
+                <li><a href="git.html">16. Git</a></li>
+            </ul>
+            <p style="text-align: center; margin-top: 40px; font-style: italic;">Оберіть тему для детального вивчення. Кожна сторінка містить питання за рівнями: прості, середні, глибокі.</p>
+        </div>
+    </section>
+</div>
+</body>
+</html>

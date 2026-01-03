@@ -1,10 +1,690 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Core - Front-End Interview Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+    <section class="content">
+        <!-- JavaScript Core -->
+        <section id="js-core" class="section">
+            <h2>1. JavaScript Core</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке змінна? Різниця між var, let, const?</h4>
+                    <div class="answer">
+                        <p><strong>Змінна</strong> - це контейнер для зберігання даних.</p>
+                        <p><strong>var</strong> - застарілий спосіб, function-scoped, має hoisting, можна перевизначати
+                        </p>
+                        <p><strong>let</strong> - block-scoped, можна змінювати значення, але не можна перевизначати,
+                            має temporal dead zone</p>
+                        <p><strong>const</strong> - block-scoped, не можна змінювати значення (але можна мутувати
+                            об'єкти/масиви), має temporal dead zone</p>
+                        <div class="important">
+                            <strong>Важливо:</strong> Завжди використовуй const за замовчуванням, let коли потрібно
+                            змінювати, var - ніколи не використовуй в новому коді.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Які є типи даних в JavaScript?</h4>
+                    <div class="answer">
+                        <p><strong>Примітивні типи (7 штук):</strong></p>
+                        <ul>
+                            <li><code>string</code> - текст ('hello', "world")</li>
+                            <li><code>number</code> - числа (42, 3.14, NaN, Infinity)</li>
+                            <li><code>bigint</code> - великі числа (123n)</li>
+                            <li><code>boolean</code> - true/false</li>
+                            <li><code>undefined</code> - значення не присвоєно</li>
+                            <li><code>null</code> - навмисно пусте значення</li>
+                            <li><code>symbol</code> - унікальний ідентифікатор</li>
+                        </ul>
+                        <p><strong>Об'єктні типи:</strong></p>
+                        <ul>
+                            <li>Object, Array, Function, Date, RegExp, Map, Set, WeakMap, WeakSet</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке функція? Як оголосити функцію?</h4>
+                    <div class="answer">
+                        <p><strong>Функція</strong> - блок коду, який можна викликати багато разів.</p>
+                        <p><strong>Способи оголошення:</strong></p>
+                        <ul>
+                            <li><strong>Function Declaration:</strong> function name() {} - підіймається (hoisting)</li>
+                            <li><strong>Function Expression:</strong> const name = function() {} - не підіймається</li>
+                            <li><strong>Arrow Function:</strong> const name = () => {} - короткий синтаксис, немає свого
+                                this
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке масив? Основні методи масивів?</h4>
+                    <div class="answer">
+                        <p><strong>Масив</strong> - колекція елементів з індексами, починаючи з 0.</p>
+                        <p><strong>Основні методи:</strong></p>
+                        <ul>
+                            <li><code>push()</code> - додати в кінець</li>
+                            <li><code>pop()</code> - видалити з кінця</li>
+                            <li><code>unshift()</code> - додати на початок</li>
+                            <li><code>shift()</code> - видалити з початку</li>
+                            <li><code>map()</code> - трансформує кожен елемент</li>
+                            <li><code>filter()</code> - фільтрує елементи</li>
+                            <li><code>reduce()</code> - зводить до одного значення</li>
+                            <li><code>find()</code> - знаходить перший елемент</li>
+                            <li><code>forEach()</code> - ітерує по масиву</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке об'єкт? Як створити об'єкт?</h4>
+                    <div class="answer">
+                        <p><strong>Об'єкт</strong> - колекція пар ключ-значення.</p>
+                        <p><strong>Способи створення:</strong></p>
+                        <ul>
+                            <li>Літерал: <code>const obj = { key: 'value' }</code></li>
+                            <li>Конструктор: <code>const obj = new Object()</code></li>
+                            <li>Object.create(): <code>const obj = Object.create(proto)</code></li>
+                        </ul>
+                        <p><strong>Доступ до властивостей:</strong> obj.key або obj['key']</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Що таке hoisting?</h4>
+                    <div class="answer">
+                        <p><strong>Hoisting</strong> - механізм, коли JavaScript "підіймає" оголошення змінних та
+                            функцій на початок їх scope перед виконанням коду.</p>
+                        <p><strong>Function Declaration</strong> - підіймається повністю, можна викликати до оголошення.
+                        </p>
+                        <p><strong>var</strong> - підіймається оголошення, але не ініціалізація (буде undefined).</p>
+                        <p><strong>let/const</strong> - підіймаються, але мають temporal dead zone - не можна
+                            використовувати до оголошення.</p>
+                        <div class="tip">
+                            <strong>Порада:</strong> Завжди оголошуй змінні на початку scope, щоб уникнути плутанини з
+                            hoisting.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Поясни this в JavaScript. Коли він змінюється?</h4>
+                    <div class="answer">
+                        <p><strong>this</strong> - посилання на контекст виконання функції. Залежить від того, ЯК
+                            викликається функція:</p>
+                        <ul>
+                            <li><strong>Глобальний контекст:</strong> this = window (в браузері) або global (Node.js)
+                            </li>
+                            <li><strong>Метод об'єкта:</strong> this = об'єкт, на якому викликається метод</li>
+                            <li><strong>Function call:</strong> this = undefined (strict mode) або window</li>
+                            <li><strong>Arrow function:</strong> this береться з зовнішнього scope (лексичний this)</li>
+                            <li><strong>call/apply/bind:</strong> this = перший аргумент</li>
+                            <li><strong>new:</strong> this = новий створений об'єкт</li>
+                            <li><strong>Event handler:</strong> this = елемент, на якому відбулась подія</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Стрілочні функції НЕ мають свого this - вони беруть this з місця,
+                            де були створені.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке замикання (closure)? Навіщо потрібні?</h4>
+                    <div class="answer">
+                        <p><strong>Closure (замикання)</strong> - це функція, яка має доступ до змінних зовнішньої
+                            функції навіть після того, як зовнішня функція завершила виконання.</p>
+                        <p><strong>Навіщо потрібні:</strong></p>
+                        <ul>
+                            <li>Приватні змінні (інкапсуляція)</li>
+                            <li>Factory functions (фабрики функцій)</li>
+                            <li>Каррінг (currying)</li>
+                            <li>Мемоізація</li>
+                            <li>Колбеки та обробники подій</li>
+                            <li>Модульний патерн</li>
+                        </ul>
+                        <p>Замикання створюється кожного разу, коли функція створюється всередині іншої функції.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між == і ===?</h4>
+                    <div class="answer">
+                        <p><strong>== (loose equality)</strong> - порівнює ЗНАЧЕННЯ з приведенням типів (type coercion)
+                        </p>
+                        <p><strong>=== (strict equality)</strong> - порівнює ЗНАЧЕННЯ і ТИП без приведення</p>
+                        <p><strong>Приклади:</strong></p>
+                        <ul>
+                            <li>'5' == 5 → true (приводить до одного типу)</li>
+                            <li>'5' === 5 → false (різні типи)</li>
+                            <li>null == undefined → true</li>
+                            <li>null === undefined → false</li>
+                            <li>0 == false → true</li>
+                            <li>0 === false → false</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Best practice:</strong> Завжди використовуй === щоб уникнути неочікуваної поведінки.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке стрілочні функції? Чим відрізняються від звичайних?</h4>
+                    <div class="answer">
+                        <p><strong>Arrow functions</strong> - короткий синтаксис для написання функцій (ES6+)</p>
+                        <p><strong>Відмінності від звичайних функцій:</strong></p>
+                        <ul>
+                            <li><strong>Немає свого this</strong> - беруть this з зовнішнього scope</li>
+                            <li><strong>Немає arguments</strong> - не мають об'єкта arguments</li>
+                            <li><strong>Не можна використовувати як конструктор</strong> - не можна викликати з new</li>
+                            <li><strong>Немає prototype</strong></li>
+                            <li><strong>Неявний return</strong> - якщо одна інструкція без {}, вона автоматично
+                                повертається
+                            </li>
+                        </ul>
+                        <p><strong>Коли використовувати:</strong> колбеки, методи масивів, короткі функції. Не
+                            використовуй для методів об'єкта, де потрібен this.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке деструктуризація?</h4>
+                    <div class="answer">
+                        <p><strong>Деструктуризація</strong> - синтаксис, який дозволяє розпаковувати значення з масивів
+                            або властивості з об'єктів у окремі змінні.</p>
+                        <p><strong>Масиви:</strong> const [a, b] = [1, 2] → a=1, b=2</p>
+                        <p><strong>Об'єкти:</strong> const {name, age} = person</p>
+                        <p><strong>Можна:</strong></p>
+                        <ul>
+                            <li>Перейменовувати: const {name: userName} = person</li>
+                            <li>Значення за замовчуванням: const {age = 18} = person</li>
+                            <li>Пропускати елементи: const [first, , third] = arr</li>
+                            <li>Rest operator: const [first, ...rest] = arr</li>
+                            <li>Вкладена деструктуризація</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке spread/rest оператори?</h4>
+                    <div class="answer">
+                        <p><strong>Spread (...)</strong> - розгортає масив/об'єкт на окремі елементи</p>
+                        <ul>
+                            <li>Копіювання масиву: const newArr = [...oldArr]</li>
+                            <li>Об'єднання масивів: [...arr1, ...arr2]</li>
+                            <li>Копіювання об'єкта: const newObj = {...oldObj}</li>
+                            <li>Передача аргументів: func(...args)</li>
+                        </ul>
+                        <p><strong>Rest (...)</strong> - збирає залишкові елементи в масив</p>
+                        <ul>
+                            <li>Параметри функції: function sum(...numbers) {}</li>
+                            <li>Деструктуризація: const [first, ...rest] = arr</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Підказка:</strong> Якщо ... розгортає - це spread, якщо збирає - це rest.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Поясни map, filter, reduce</h4>
+                    <div class="answer">
+                        <p><strong>map()</strong> - створює новий масив, трансформуючи кожен елемент</p>
+                        <ul>
+                            <li>Повертає масив тієї ж довжини</li>
+                            <li>Використовується для трансформації даних</li>
+                            <li>Приклад: [1,2,3].map(x => x * 2) → [2,4,6]</li>
+                        </ul>
+                        <p><strong>filter()</strong> - створює новий масив з елементами, які пройшли перевірку</p>
+                        <ul>
+                            <li>Повертає масив меншої або тієї ж довжини</li>
+                            <li>Використовується для фільтрації</li>
+                            <li>Приклад: [1,2,3,4].filter(x => x > 2) → [3,4]</li>
+                        </ul>
+                        <p><strong>reduce()</strong> - зводить масив до одного значення</p>
+                        <ul>
+                            <li>Може повернути будь-який тип</li>
+                            <li>Має accumulator і поточне значення</li>
+                            <li>Приклад: [1,2,3].reduce((sum, x) => sum + x, 0) → 6</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Всі три методи НЕ змінюють оригінальний масив - вони повертають
+                            новий.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке callback функція?</h4>
+                    <div class="answer">
+                        <p><strong>Callback</strong> - функція, яка передається як аргумент в іншу функцію і
+                            викликається пізніше.</p>
+                        <p><strong>Використання:</strong></p>
+                        <ul>
+                            <li>Асинхронні операції (setTimeout, fetch)</li>
+                            <li>Обробники подій (addEventListener)</li>
+                            <li>Методи масивів (map, filter, forEach)</li>
+                            <li>Кастомна логіка (функції вищого порядку)</li>
+                        </ul>
+                        <p><strong>Проблема:</strong> Callback Hell - коли багато вкладених колбеків. Вирішується за
+                            допомогою Promises або async/await.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Promise? Навіщо потрібні?</h4>
+                    <div class="answer">
+                        <p><strong>Promise</strong> - об'єкт, який представляє результат асинхронної операції (успішний
+                            або помилка).</p>
+                        <p><strong>Стани Promise:</strong></p>
+                        <ul>
+                            <li><strong>pending</strong> - початковий стан, операція виконується</li>
+                            <li><strong>fulfilled</strong> - операція завершилась успішно</li>
+                            <li><strong>rejected</strong> - операція завершилась з помилкою</li>
+                        </ul>
+                        <p><strong>Методи:</strong></p>
+                        <ul>
+                            <li><code>.then()</code> - обробка успішного результату</li>
+                            <li><code>.catch()</code> - обробка помилки</li>
+                            <li><code>.finally()</code> - виконується завжди</li>
+                        </ul>
+                        <p><strong>Навіщо потрібні:</strong> уникнення callback hell, кращий контроль над асинхронним
+                            кодом, можливість chain (ланцюжки).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Поясни Event Loop детально</h4>
+                    <div class="answer">
+                        <p><strong>Event Loop</strong> - механізм, який керує виконанням коду в JavaScript
+                            (однопотоковому).</p>
+                        <p><strong>Компоненти:</strong></p>
+                        <ul>
+                            <li><strong>Call Stack</strong> - стек викликів функцій (LIFO). Коли функція викликається,
+                                вона додається в стек, коли завершується - видаляється.
+                            </li>
+                            <li><strong>Web APIs</strong> - браузерні API (setTimeout, fetch, DOM events), які
+                                виконуються поза JavaScript
+                            </li>
+                            <li><strong>Callback Queue (Task Queue / Macrotask Queue)</strong> - черга для колбеків з
+                                setTimeout, setInterval, I/O операцій
+                            </li>
+                            <li><strong>Microtask Queue</strong> - черга для Promise колбеків (.then, .catch, .finally),
+                                queueMicrotask, MutationObserver
+                            </li>
+                        </ul>
+                        <p><strong>Як працює:</strong></p>
+                        <ol>
+                            <li>Виконується синхронний код (Call Stack)</li>
+                            <li>Коли Call Stack порожній, Event Loop перевіряє Microtask Queue</li>
+                            <li>Виконує ВСІ microtasks</li>
+                            <li>Потім бере ОДНУ задачу з Callback Queue (macrotask)</li>
+                            <li>Повторює з пункту 2</li>
+                        </ol>
+                        <div class="important">
+                            <strong>Важливо:</strong> Microtasks мають вищий пріоритет! Всі microtasks виконуються перед
+                            наступним macrotask.
+                        </div>
+                        <p><strong>Приклад порядку виконання:</strong></p>
+                        <ol>
+                            <li>Синхронний код</li>
+                            <li>Microtasks (Promises)</li>
+                            <li>Macrotasks (setTimeout)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке прототипи? Як працює прототипне наслідування?</h4>
+                    <div class="answer">
+                        <p><strong>Прототип</strong> - об'єкт, від якого інший об'єкт наслідує властивості та методи.
+                        </p>
+                        <p><strong>Прототипний ланцюжок (Prototype Chain):</strong></p>
+                        <ul>
+                            <li>Кожен об'єкт має внутрішнє посилання [[Prototype]] (доступне через __proto__)</li>
+                            <li>Якщо властивість не знайдена в об'єкті, JS шукає її в прототипі</li>
+                            <li>Потім в прототипі прототипа, і так далі</li>
+                            <li>Ланцюжок закінчується на Object.prototype (його прототип = null)</li>
+                        </ul>
+                        <p><strong>Як створити наслідування:</strong></p>
+                        <ul>
+                            <li>Через конструктор: Child.prototype = Object.create(Parent.prototype)</li>
+                            <li>Через class (ES6): class Child extends Parent</li>
+                            <li>Через Object.create(): const child = Object.create(parent)</li>
+                        </ul>
+                        <p><strong>Різниця між __proto__ і prototype:</strong></p>
+                        <ul>
+                            <li>__proto__ - властивість КОЖНОГО об'єкта, посилання на прототип</li>
+                            <li>prototype - властивість ФУНКЦІЙ-КОНСТРУКТОРІВ, шаблон для створення об'єктів</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між call, apply, bind?</h4>
+                    <div class="answer">
+                        <p>Всі три методи дозволяють встановити контекст (this) для функції:</p>
+                        <p><strong>call(thisArg, arg1, arg2, ...)</strong></p>
+                        <ul>
+                            <li>Викликає функцію ОДРАЗУ</li>
+                            <li>Аргументи передаються окремо через кому</li>
+                            <li>Використання: func.call(obj, 'arg1', 'arg2')</li>
+                        </ul>
+                        <p><strong>apply(thisArg, [arg1, arg2, ...])</strong></p>
+                        <ul>
+                            <li>Викликає функцію ОДРАЗУ</li>
+                            <li>Аргументи передаються як МАСИВ</li>
+                            <li>Використання: func.apply(obj, ['arg1', 'arg2'])</li>
+                        </ul>
+                        <p><strong>bind(thisArg, arg1, arg2, ...)</strong></p>
+                        <ul>
+                            <li>НЕ викликає функцію, а повертає НОВУ функцію з прив'язаним this</li>
+                            <li>Можна частково застосувати аргументи (partial application)</li>
+                            <li>Використання: const boundFunc = func.bind(obj, 'arg1')</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Запам'ятай:</strong> call/apply - викликають зараз, bind - повертає функцію для
+                            пізнішого виклику.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке async/await? Як обробляти помилки?</h4>
+                    <div class="answer">
+                        <p><strong>async/await</strong> - синтаксичний цукор над Promises для роботи з асинхронним кодом
+                            у синхронному стилі.</p>
+                        <p><strong>async</strong> - ключове слово перед функцією, робить її асинхронною. Завжди повертає
+                            Promise.</p>
+                        <p><strong>await</strong> - чекає на виконання Promise. Можна використовувати тільки всередині
+                            async функції.</p>
+                        <p><strong>Обробка помилок:</strong></p>
+                        <ul>
+                            <li><strong>try/catch</strong> - стандартний спосіб обробки помилок</li>
+                            <li>Можна використовувати .catch() на Promise</li>
+                            <li>finally {} блок для коду, що виконується завжди</li>
+                        </ul>
+                        <p><strong>Переваги:</strong></p>
+                        <ul>
+                            <li>Читабельніший код (схожий на синхронний)</li>
+                            <li>Легша обробка помилок через try/catch</li>
+                            <li>Краща підтримка debugging</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> await блокує виконання тільки всередині async функції, не блокує
+                            весь JavaScript!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Promise.all, Promise.race, Promise.allSettled, Promise.any?</h4>
+                    <div class="answer">
+                        <p><strong>Promise.all([promises])</strong></p>
+                        <ul>
+                            <li>Чекає поки ВСІ Promise виконаються успішно</li>
+                            <li>Повертає масив результатів в тому ж порядку</li>
+                            <li>Якщо ХОЧА Б ОДИН rejected - весь Promise.all rejected</li>
+                            <li>Використання: коли потрібні результати ВСІХ запитів</li>
+                        </ul>
+                        <p><strong>Promise.race([promises])</strong></p>
+                        <ul>
+                            <li>Повертає результат ПЕРШОГО завершеного Promise (fulfilled або rejected)</li>
+                            <li>Інші Promise продовжують виконуватись, але їх результат ігнорується</li>
+                            <li>Використання: timeout для запитів, перший відповідь з кількох джерел</li>
+                        </ul>
+                        <p><strong>Promise.allSettled([promises])</strong></p>
+                        <ul>
+                            <li>Чекає поки ВСІ Promise завершаться (fulfilled або rejected)</li>
+                            <li>Повертає масив об'єктів {status, value/reason}</li>
+                            <li>НІКОЛИ не rejected</li>
+                            <li>Використання: коли потрібно знати результат всіх операцій, навіть якщо деякі failed</li>
+                        </ul>
+                        <p><strong>Promise.any([promises])</strong></p>
+                        <ul>
+                            <li>Повертає результат ПЕРШОГО УСПІШНОГО Promise</li>
+                            <li>Ігнорує rejected promises</li>
+                            <li>Якщо ВСІ rejected - повертає AggregateError</li>
+                            <li>Використання: перший успішний результат з кількох джерел</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+
 </body>
 </html>

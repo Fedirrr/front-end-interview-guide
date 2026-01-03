@@ -1,10 +1,549 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript - Front-End Interview Guide</title>
+    <!-- Стилі та nav як у попередніх файлах -->
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+    <!-- Nav як у попередніх -->
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="typescript" class="section">
+            <h2>7. TypeScript</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке TypeScript?</h4>
+                    <div class="answer">
+                        <p><strong>TypeScript</strong> - надмножина JavaScript з статичною типізацією, компілюється в
+                            JS.</p>
+                        <p><strong>Навіщо:</strong> catch errors на compile-time, кращий IDE support, scalable code.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Навіщо потрібен TypeScript?</h4>
+                    <div class="answer">
+                        <p><strong>Переваги:</strong></p>
+                        <ul>
+                            <li>Типи для props/state</li>
+                            <li>Refactoring без багів</li>
+                            <li>Documentation в коді</li>
+                            <li>Кращі teams collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке типізація?</h4>
+                    <div class="answer">
+                        <p><strong>Типізація:</strong> Призначення типів змінним/функціям для перевірки.</p>
+                        <ul>
+                            <li>Static: compile-time</li>
+                            <li>Dynamic: runtime (JS)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Основні типи в TypeScript?</h4>
+                    <div class="answer">
+                        <p><strong>Примітивні:</strong> string, number, boolean, null, undefined, symbol, bigint.</p>
+                        <p><strong>Комплексні:</strong> object, array, tuple, enum, any, unknown, void, never.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке interface?</h4>
+                    <div class="answer">
+                        <p><strong>Interface:</strong> Контракт для об'єктів (shape).</p>
+                        <ul>
+                            <li><code>interface User { name: string; age: number; }</code></li>
+                            <li>Extend: interface Admin extends User { role: string; }</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке type alias?</h4>
+                    <div class="answer">
+                        <p><strong>Type alias:</strong> Альтернатива interface для типів.</p>
+                        <ul>
+                            <li><code>type User = { name: string; age: number; }</code></li>
+                            <li>Для unions: type ID = string | number</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Різниця між interface і type?</h4>
+                    <div class="answer">
+                        <p><strong>Interface:</strong> Для object shapes, extend/merge.</p>
+                        <p><strong>Type:</strong> Більш гнучкий (unions, primitives), але не merge.</p>
+                        <ul>
+                            <li>Interface кращий для classes/DOM</li>
+                            <li>Type для complex types</li>
+                        </ul>
+                        <div class="tip">
+                            <strong>Правило:</strong> Interface за замовчуванням, type для unions/intersections.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке union types?</h4>
+                    <div class="answer">
+                        <p><strong>Union:</strong> Тип, що може бути одним з кількох.</p>
+                        <ul>
+                            <li><code>type Status = 'loading' | 'success' | 'error'</code></li>
+                            <li>Type guards: if (typeof x === 'string')</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке generic types?</h4>
+                    <div class="answer">
+                        <p><strong>Generics:</strong> Параметризовані типи для reuse.</p>
+                        <ul>
+                            <li><code>function identity
+                                <T>(arg: T): T { return arg; }
+                            </code></li>
+                            <li>Array
+                                <T>, Promise
+                                    <T>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати React компонент?</h4>
+                    <div class="answer">
+                        <p><strong>Функціональний:</strong> <code>const Comp: React.FC
+                            <Props> = ({name}) => ...
+                        </code></p>
+                        <ul>
+                            <li>React.FC для children</li>
+                            <li>Avoid FC - use function with typed params</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати props?</h4>
+                    <div class="answer">
+                        <p><strong>Interface:</strong> <code>interface Props { name: string; onClick: () => void;
+                            }</code></p>
+                        <ul>
+                            <li>Optional: name?: string</li>
+                            <li>Default: with defaultProps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати state?</h4>
+                    <div class="answer">
+                        <p><strong>useState:</strong> <code>const [count, setCount] = useState
+                            <number>(0)
+                        </code></p>
+                        <ul>
+                            <li>Object: useState
+                                <User | null>(null)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке React.FC?</h4>
+                    <div class="answer">
+                        <p><strong>React.FC:</strong> Type для functional components з children.</p>
+                        <ul>
+                            <li><code>const Comp: React.FC = () => &lt;div&gt;{children}&lt;/div&gt;</code></li>
+                            <li>Deprecated? - explicit children prop</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати події (events)?</h4>
+                    <div class="answer">
+                        <p><strong>onClick:</strong> <code>(e: React.MouseEvent) => ...</code></p>
+                        <ul>
+                            <li>onChange: React.ChangeEvent
+                                <HTMLInputElement>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Що таке utility types (Partial, Pick, Omit, Record)?</h4>
+                    <div class="answer">
+                        <p><strong>Utility:</strong> Built-in для manipulation.</p>
+                        <ul>
+                            <li>Partial
+                                <T>: all optional
+                            </li>
+                            <li>Pick
+                                <T
+                                , K>: select keys
+                            </li>
+                            <li>Omit
+                                <T
+                                , K>: exclude keys
+                            </li>
+                            <li>Record
+                                <K
+                                , T>: { [key: K]: T }
+                            </li>
+                        </ul>
+                        <p>Приклад: Partial
+                            <User> для update.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати hooks?</h4>
+                    <div class="answer">
+                        <p><strong>useState:</strong> useState
+                            <T>(initial)
+                        </p>
+                        <p><strong>useEffect:</strong> useEffect(() => {}, deps: T[])</p>
+                        <ul>
+                            <li>Custom: function useCustom
+                                <T>(value: T)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке conditional types?</h4>
+                    <div class="answer">
+                        <p><strong>Conditional:</strong> Ternary на типах.</p>
+                        <ul>
+                            <li><code>type NonNullable
+                                <T> = T extends null | undefined ? never : T
+                            </code></li>
+                            <li>Extract<U, T>: U extends T ? U : never</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке mapped types?</h4>
+                    <div class="answer">
+                        <p><strong>Mapped:</strong> Transform keys.</p>
+                        <ul>
+                            <li><code>type Readonly
+                                <T> = { readonly [K in keyof T]: T[K] }
+                            </code></li>
+                            <li>Partial: { [K in keyof T]?: T[K] }</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати Context?</h4>
+                    <div class="answer">
+                        <p><strong>Context:</strong> <code>const Context = createContext
+                            <MyType | null>(null)
+                        </code></p>
+                        <ul>
+                            <li>Provider: props with value: MyType</li>
+                            <li>useContext: with type guard</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як типізувати Redux (typed hooks)?</h4>
+                    <div class="answer">
+                        <p><strong>RTK:</strong> Auto-generated types з createSlice.</p>
+                        <ul>
+                            <li>useAppSelector: TypedState</li>
+                            <li>useAppDispatch: AppDispatch</li>
+                        </ul>
+                        <p>Без RTK: RootState з combineReducers.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке type guards?</h4>
+                    <div class="answer">
+                        <p><strong>Type guard:</strong> Функція, що звужує union.</p>
+                        <ul>
+                            <li><code>function isUser(obj: any): obj is User { return 'name' in obj; }</code></li>
+                            <li>typeof, instanceof</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке discriminated unions?</h4>
+                    <div class="answer">
+                        <p><strong>Discriminated:</strong> Union з common literal prop.</p>
+                        <ul>
+                            <li><code>type Shape = {kind: 'circle', r: number} | {kind: 'square', side: number}</code>
+                            </li>
+                            <li>Switch на kind для narrowing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює type inference?</h4>
+                    <div class="answer">
+                        <p><strong>Inference:</strong> TS виводить типи з context.</p>
+                        <ul>
+                            <li>const x = 5 // number</li>
+                            <li>Generics: identity(5) // T=number</li>
+                        </ul>
+                        <div class="important">
+                            <strong>Важливо:</strong> Зменшує boilerplate.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що краще any чи unknown?</h4>
+                    <div class="answer">
+                        <p><strong>any:</strong> No checks, unsafe.</p>
+                        <p><strong>unknown:</strong> Safer, require type check перед use.</p>
+                        <ul>
+                            <li>Prefer unknown + guard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>

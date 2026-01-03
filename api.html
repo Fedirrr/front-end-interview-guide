@@ -1,10 +1,445 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API & Data Fetching - Front-End Interview Guide</title>
+    <style>
+        /* Ті ж стилі, що в попередніх файлах */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #2d3748;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #4a5568;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            page-break-inside: avoid;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .subsection {
+            margin-bottom: 40px;
+        }
+
+        .subsection h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .question h4 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .answer {
+            color: #4a5568;
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+
+        .answer p {
+            margin-bottom: 10px;
+        }
+
+        .answer ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 5px;
+        }
+
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        .important {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tip {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .section {
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+
 </head>
 <body>
-$END$
+<div class="container">
+    <header>
+        <h1>🚀 Front-End Interview Guide</h1>
+        <p>Повний гід для підготовки до співбесіди</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="js-core.html">JavaScript</a></li>
+            <li><a href="react-basics.html">React Basics</a></li>
+            <li><a href="hooks.html">Hooks</a></li>
+            <li><a href="state-mgmt.html">State Management</a></li>
+            <li><a href="react-router.html">Router</a></li>
+            <li><a href="performance.html">Performance</a></li>
+            <li><a href="typescript.html">TypeScript</a></li>
+            <li><a href="styling.html">Styling</a></li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="build.html">Build Tools</a></li>
+            <li><a href="api.html">API</a></li>
+            <li><a href="patterns.html">Patterns</a></li>
+            <li><a href="advanced-react.html">Advanced</a></li>
+            <li><a href="html-css.html">HTML/CSS</a></li>
+            <li><a href="browser.html">Browser</a></li>
+            <li><a href="git.html">Git</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="content">
+        <section id="api" class="section">
+            <h2>11. API & Data Fetching</h2>
+
+            <div class="subsection">
+                <h3>Прості питання</h3>
+
+                <div class="question">
+                    <h4>Що таке API?</h4>
+                    <div class="answer">
+                        <p><strong>API:</strong> Interface для interaction з services.</p>
+                        <ul>
+                            <li>REST, GraphQL</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке REST API?</h4>
+                    <div class="answer">
+                        <p><strong>REST:</strong> Stateless, resources via HTTP methods.</p>
+                        <ul>
+                            <li>GET /users, POST /users</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як робити HTTP запити в React?</h4>
+                    <div class="answer">
+                        <p><strong>fetch:</strong> <code>fetch('/api').then(res => res.json())</code></p>
+                        <ul>
+                            <li>useEffect для load</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке fetch?</h4>
+                    <div class="answer">
+                        <p><strong>fetch:</strong> Native API для HTTP.</p>
+                        <ul>
+                            <li>Promise-based, no auto JSON</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке Axios?</h4>
+                    <div class="answer">
+                        <p><strong>Axios:</strong> Promise HTTP client з interceptors.</p>
+                        <ul>
+                            <li>Auto JSON, cancel tokens</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Середні питання</h3>
+
+                <div class="question">
+                    <h4>Де робити fetch запити в React?</h4>
+                    <div class="answer">
+                        <p><strong>useEffect:</strong> On mount/update.</p>
+                        <ul>
+                            <li>Custom hook: useFetch</li>
+                            <li>Avoid in render</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як обробляти loading state?</h4>
+                    <div class="answer">
+                        <p><strong>State:</strong> [data, loading, error]</p>
+                        <ul>
+                            <li>useState для flags</li>
+                            <li>Spinner on loading</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як обробляти помилки?</h4>
+                    <div class="answer">
+                        <p><strong>try/catch:</strong> In async, setError.</p>
+                        <ul>
+                            <li>Global: ErrorBoundary</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке React Query?</h4>
+                    <div class="answer">
+                        <p><strong>React Query:</strong> Server state manager.</p>
+                        <ul>
+                            <li>Cache, refetch, mutations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке SWR?</h4>
+                    <div class="answer">
+                        <p><strong>SWR:</strong> Stale-while-revalidate fetching.</p>
+                        <ul>
+                            <li>Simple: useSWR('/api')</li>
+                            <li>Lightweight</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Переваги React Query над useEffect?</h4>
+                    <div class="answer">
+                        <p><strong>RQ:</strong> Auto cache, dedupe, background updates.</p>
+                        <ul>
+                            <li>No manual loading/error</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>Глибокі питання</h3>
+
+                <div class="question">
+                    <h4>Що таке caching в React Query?</h4>
+                    <div class="answer">
+                        <p><strong>Cache:</strong> In-memory, key-based.</p>
+                        <ul>
+                            <li>staleTime, cacheTime</li>
+                            <li>GC автоматичний</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке stale data?</h4>
+                    <div class="answer">
+                        <p><strong>Stale:</strong> Old cache, served while revalidate.</p>
+                        <ul>
+                            <li>staleTime: How long before revalidate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке prefetching?</h4>
+                    <div class="answer">
+                        <p><strong>Prefetch:</strong> queryClient.prefetchQuery(key, fn).</p>
+                        <ul>
+                            <li>For routes, hover</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке optimistic updates?</h4>
+                    <div class="answer">
+                        <p><strong>Optimistic:</strong> Update UI immediately, rollback on error.</p>
+                        <ul>
+                            <li>useMutation optimisticUpdate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як працює invalidation в React Query?</h4>
+                    <div class="answer">
+                        <p><strong>Invalidation:</strong> InvalidateQueries(key) to refetch.</p>
+                        <ul>
+                            <li>After mutation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке pagination в React Query?</h4>
+                    <div class="answer">
+                        <p><strong>Pagination:</strong> useInfiniteQuery для cursor/page.</p>
+                        <ul>
+                            <li>getNextPageParam</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Що таке infinite scroll?</h4>
+                    <div class="answer">
+                        <p><strong>Infinite:</strong> useInfiniteQuery + IntersectionObserver.</p>
+                        <ul>
+                            <li>fetchNextPage on view</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Різниця між React Query і SWR?</h4>
+                    <div class="answer">
+                        <p><strong>RQ:</strong> Full-featured, queries/mutations.</p>
+                        <p><strong>SWR:</strong> Simple, focused on fetching.</p>
+                        <ul>
+                            <li>RQ: Devtools, offline</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h4>Як обробляти race conditions?</h4>
+                    <div class="answer">
+                        <p><strong>Race:</strong> Latest response wins (RQ deduping).</p>
+                        <ul>
+                            <li>AbortController for cancel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 </body>
 </html>
