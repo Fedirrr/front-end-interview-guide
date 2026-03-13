@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 type Level = "junior" | "middle" | "senior";
 
@@ -334,9 +334,15 @@ export default function App() {
     const [activeCategory, setActiveCategory] = useState<string | null>(null);
     const [filter, setFilter] = useState("all");
     const [search, setSearch] = useState("");
-    const [checked, setChecked] = useState<Record<string, boolean>>({});
+    const [checked, setChecked] = useState<Record<string, boolean>>(() => {
+        try { return JSON.parse(localStorage.getItem("checked") || "{}"); } catch { return {}; }
+    });
     const [view, setView] = useState<"categories" | "all">("categories");
     const [expanded, setExpanded] = useState<string | null>(null);
+
+    useEffect(() => {
+        localStorage.setItem("checked", JSON.stringify(checked));
+    }, [checked]);
 
     const toggleCheck = (id: string) => {
         setChecked((prev) => ({ ...prev, [id]: !prev[id] }));
